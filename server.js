@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const https = require('https');
+const http = require('http');
 const path = require('path');
 const WebSocket = require('ws');
 const { v4: uuidv4 } = require('uuid');
@@ -11,6 +12,7 @@ const hostname = 'localhost';   // Needs to match DNS in ssl ext file
 const ccPort = 4000;
 const httpsPort = 80;
 const useccTLS = false;
+const usewebTLS = false;
 
 var connections = [];
 
@@ -20,8 +22,13 @@ const sslInfo = {
   key: fs.readFileSync('./ssl/https.key')
 };
 
-const webhttpsServer = https.Server(sslInfo, webapp);
-const httpsio = require('socket.io')(webhttpsServer);
+var webServer;
+if (usewebTLS){
+  webServer = https.Server(sslInfo, webapp);
+} else{
+  webServer = http.Server(webapp);
+}
+const httpsio = require('socket.io')(webServer);
 webapp.use(express.static('public'));
 
 // Should we encrypt the ccClient <-> Server websocket? (disable during local testing)
@@ -39,7 +46,7 @@ if (useccTLS){
 }
 
 // Listen for incoming connections on http server
-webhttpsServer.listen(process.env.PORT || httpsPort, function(){
+webServer.listen(process.env.PORT || httpsPort, function(){
   console.log('Webserver Started at Port: ' + httpsPort);
 });
 
