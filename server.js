@@ -54,6 +54,7 @@ webServer.listen(process.env.PORT || httpsPort, function(){
 
 // Default https page
 webapp.get('/', function (req, res){
+  console.log("TEST");
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
