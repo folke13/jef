@@ -1,5 +1,5 @@
 {
-  "name": "right-now",
+  "name": "jef",
   "version": "1.0.0",
   "description": "Real-time application is real-time.",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Turing School",
+  "author": "TheDwarfer",
   "license": "MIT",
   "dependencies": {
     "express": "^4.12.3",
