@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>JEF - but in your browser</title>
+  </head>
+  <body>
+
+    <h1>You Connected!</h1>
+
+    <input class="textBox" id="input" maxlength="100" required/>
+    <input type="button" class="submitButton" value="Send Message" onClick="sendMessage();"/>
+
+    <div class="data">
+    </div>
+
+    <script src="/jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/application.js"></script>
+
+  </body>
+</html>
