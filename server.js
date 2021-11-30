@@ -17,10 +17,12 @@ const usewebTLS = false;
 var connections = [];
 
 // SSL/TLS info
-const sslInfo = {
-  cert: fs.readFileSync('./ssl/https.crt'),
-  key: fs.readFileSync('./ssl/https.key')
-};
+if (usewebTLS){
+  const sslInfo = {
+    cert: fs.readFileSync('./ssl/https.crt'),
+    key: fs.readFileSync('./ssl/https.key')
+  };
+}
 
 var webServer;
 if (usewebTLS){
