@@ -19,8 +19,8 @@ var connections = [];
 // SSL/TLS info
 if (usewebTLS){
   const sslInfo = {
-    cert: fs.readFileSync('./ssl/https.crt'),
-    key: fs.readFileSync('./ssl/https.key')
+    cert: fs.readFileSync('~/../../etc/letsencrypt/live/cc-jef.com/fullchain-pem'),
+    key: fs.readFileSync('~/../../etc/letsencrypt/live/cc-jef.com/fullchain-pem')
   };
 }
 
