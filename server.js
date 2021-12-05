@@ -10,17 +10,18 @@ const webapp = express();
 // Setup Variables
 const hostname = 'localhost';   // Needs to match DNS in ssl ext file
 const ccPort = 4000;
-const httpsPort = 80;
-const useccTLS = false;
-const usewebTLS = false;
+const httpsPort = 443;
+const useccTLS = true;
+const usewebTLS = true;
 
 var connections = [];
+var sslInfo;
 
 // SSL/TLS info
 if (usewebTLS){
-  const sslInfo = {
-    cert: fs.readFileSync('~/../../etc/letsencrypt/live/cc-jef.com/fullchain-pem'),
-    key: fs.readFileSync('~/../../etc/letsencrypt/live/cc-jef.com/fullchain-pem')
+  sslInfo = {
+    cert: fs.readFileSync('../../../../etc/letsencrypt/live/cc-jef.com/fullchain.pem'),
+    key: fs.readFileSync('../../../../etc/letsencrypt/live/cc-jef.com/privkey.pem')
   };
 }
 
