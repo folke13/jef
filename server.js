@@ -11,18 +11,28 @@ const webapp = express();
 const hostname = 'localhost';   // Needs to match DNS in ssl ext file
 const ccPort = 4000;
 const httpsPort = 443;
-const useccTLS = true;
+const httpPort = 80;
+const useccTLS = false;
 const usewebTLS = true;
+const useLocalSSL = true;   // Use the local certificate to test locally
 
 var connections = [];
 var sslInfo;
 
 // SSL/TLS info
 if (usewebTLS){
-  sslInfo = {
-    cert: fs.readFileSync('../../../../etc/letsencrypt/live/cc-jef.com/fullchain.pem'),
-    key: fs.readFileSync('../../../../etc/letsencrypt/live/cc-jef.com/privkey.pem')
-  };
+
+  if(useLocalSSL){
+    sslInfo = {
+      cert: fs.readFileSync('ssl/https.crt'),
+      key: fs.readFileSync('ssl/https.key')
+    };
+  } else{
+    sslInfo = {
+      cert: fs.readFileSync('../../../../etc/letsencrypt/live/cc-jef.com/fullchain.pem'),
+      key: fs.readFileSync('../../../../etc/letsencrypt/live/cc-jef.com/privkey.pem')
+    };
+  }
 }
 
 var webServer;
@@ -49,13 +59,12 @@ if (useccTLS){
 }
 
 // Listen for incoming connections on http server
-webServer.listen(process.env.PORT || httpsPort, function(){
+webServer.listen(process.env.PORT || httpsPort || httpPort, function(){
   console.log('Webserver Started at Port: ' + httpsPort);
 });
 
 // Default https page
 webapp.get('/', function (req, res){
-  console.log("TEST");
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
@@ -113,8 +122,6 @@ httpsio.on('connection', (socket) => {
 // Listen for connections from CC clients, if there's a valid browser client then send the data through the ioSocket to it.
 wss.on('connection', function connection(ws) {
   ws.on('message', function message(data){
-    console.log("Got Data: " + data);
-
     // Check if connection is requesting a UUID
     if (data == "RID"){
       let uuid = uuidv4();
@@ -131,7 +138,7 @@ wss.on('connection', function connection(ws) {
       ws.send(uuid);
     } else{
       for (const connection of connections){
-        if (connection['CCSOCKET'] == ws){
+        if (connection['CCSOCKET'] == ws && connection['WEBSOCKET'] != null){
           connection['WEBSOCKET'].send(data);
         }
       }
