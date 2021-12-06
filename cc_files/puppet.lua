@@ -9,7 +9,7 @@ local boilerAPName = "boiler"
 local turbineName = "turbineValve"
 local turbineAPName = "turbine"
 local inductionName = "inductionPort"
-local inductionAPName = "inductionMatrix"  -- Needs to be updated later when AP does
+local inductionAPName = "inductionMatrix"
 
 -- Find Wireless Modems
 local wirelessModems = table.pack(peripheral.find("modem", function(_, modem)
@@ -103,44 +103,45 @@ local function getListenerValues()
 
     -- Get data from listener devices
     if  #reactor > 0 then
-      listenerData["type"] = "reactor"
+      listenerData["TYPE"] = "DATA"
+      listenerData["TAG"] = "REACTOR"
 
       for k, v in pairs(reactor) do
-        listenerData[k] = {}
+        listenerData["DATA"] = {}
 
         local status, err = pcall(function()
-          listenerData[k]["coolant"] = v.getCoolant()
-          listenerData[k]["coolantCap"] = v.getCoolantCapacity()
-          listenerData[k]["coolantNeeded"] = v.getCoolantNeeded()
-          listenerData[k]["heated"] = v.getHeatedCoolant()
-          listenerData[k]["heatedCap"] = v.getHeatedCoolantCapacity()
-          listenerData[k]["heatedNeeded"] = v.getHeatedCoolantNeeded()
-          listenerData[k]["heatedFilledPercentage"] = v.getHeatedCoolantFilledPercentage()
-          listenerData[k]["fuel"] = v.getFuel()
-          listenerData[k]["fuelCap"] = v.getFuelCapacity()
-          listenerData[k]["fuelNeeded"] = v.getFuelNeeded()
-          listenerData[k]["fuelFilledPercentage"] = v.getFuelFilledPercentage()
-          listenerData[k]["waste"] = v.getWaste()
-          listenerData[k]["wasteCap"] = v.getWasteCapacity()
-          listenerData[k]["wasteNeeded"] = v.getWasteNeeded()
-          listenerData[k]["wasteFilledPercentage"] = v.getWasteFilledPercentage()
-          listenerData[k]["coolantFilledPercentage"] = v.getCoolantFilledPercentage()
-          listenerData[k]["burnRate"] = v.getBurnRate()
-          listenerData[k]["maxBurnRate"] = v.getMaxBurnRate()
-          listenerData[k]["actualBurnRate"] = v.getActualBurnRate()
-          listenerData[k]["damagePercent"] = v.getDamagePercent()
-          listenerData[k]["heatingRate"] = v.getHeatingRate()
-          listenerData[k]["environmentalLoss"] = v.getEnvironmentalLoss()
-          listenerData[k]["temperature"] = v.getTemperature()
-          listenerData[k]["heatCapacity"] = v.getHeatCapacity()
-          listenerData[k]["fuelAssemblies"] = v.getFuelAssemblies()
-          listenerData[k]["fuelSurfaceArea"] = v.getFuelSurfaceArea()
-          listenerData[k]["boilEfficiency"] = v.getBoilEfficiency()
+          listenerData["DATA"]["coolant"] = v.getCoolant()
+          listenerData["DATA"]["coolantCap"] = v.getCoolantCapacity()
+          listenerData["DATA"]["coolantNeeded"] = v.getCoolantNeeded()
+          listenerData["DATA"]["heated"] = v.getHeatedCoolant()
+          listenerData["DATA"]["heatedCap"] = v.getHeatedCoolantCapacity()
+          listenerData["DATA"]["heatedNeeded"] = v.getHeatedCoolantNeeded()
+          listenerData["DATA"]["heatedFilledPercentage"] = v.getHeatedCoolantFilledPercentage()
+          listenerData["DATA"]["fuel"] = v.getFuel()
+          listenerData["DATA"]["fuelCap"] = v.getFuelCapacity()
+          listenerData["DATA"]["fuelNeeded"] = v.getFuelNeeded()
+          listenerData["DATA"]["fuelFilledPercentage"] = v.getFuelFilledPercentage()
+          listenerData["DATA"]["waste"] = v.getWaste()
+          listenerData["DATA"]["wasteCap"] = v.getWasteCapacity()
+          listenerData["DATA"]["wasteNeeded"] = v.getWasteNeeded()
+          listenerData["DATA"]["wasteFilledPercentage"] = v.getWasteFilledPercentage()
+          listenerData["DATA"]["coolantFilledPercentage"] = v.getCoolantFilledPercentage()
+          listenerData["DATA"]["burnRate"] = v.getBurnRate()
+          listenerData["DATA"]["maxBurnRate"] = v.getMaxBurnRate()
+          listenerData["DATA"]["actualBurnRate"] = v.getActualBurnRate()
+          listenerData["DATA"]["damagePercent"] = v.getDamagePercent()
+          listenerData["DATA"]["heatingRate"] = v.getHeatingRate()
+          listenerData["DATA"]["environmentalLoss"] = v.getEnvironmentalLoss()
+          listenerData["DATA"]["temperature"] = v.getTemperature()
+          listenerData["DATA"]["heatCapacity"] = v.getHeatCapacity()
+          listenerData["DATA"]["fuelAssemblies"] = v.getFuelAssemblies()
+          listenerData["DATA"]["fuelSurfaceArea"] = v.getFuelSurfaceArea()
+          listenerData["DATA"]["boilEfficiency"] = v.getBoilEfficiency()
 
           -- Set status string
-          listenerData[k]["status"] = "Inactive"
+          listenerData["DATA"]["status"] = "Inactive"
           if reactor[k].getStatus() then
-            listenerData[k]["status"] = "Active"
+            listenerData["DATA"]["status"] = "Active"
           end
         end)
 
@@ -152,36 +153,37 @@ local function getListenerValues()
         end
       end
     elseif #boilers > 0 then
-      listenerData["type"] = "boiler"
+      listenerData["TYPE"] = "DATA"
+      listenerData["TAG"] = "BOILER"
       for k, v in pairs(boilers) do
-        listenerData[k] = {}
+        listenerData["DATA"] = {}
 
         local status, err = pcall(function()
-          listenerData[k]["water"] = v.getWater()
-          listenerData[k]["waterCap"] = v.getWaterCapacity()
-          listenerData[k]["waterFilledPercentage"] = v.getWaterFilledPercentage()
-          listenerData[k]["heatedCoolant"] = v.getHeatedCoolant()
-          listenerData[k]["heatedCoolantCap"] = v.getHeatedCoolantCapacity()
-          listenerData[k]["heatedCoolantNeeded"] = v.getHeatedCoolantNeeded()
-          listenerData[k]["heatedCoolantFilledPercentage"] = v.getHeatedCoolantFilledPercentage()
-          listenerData[k]["steam"] = v.getSteam()
-          listenerData[k]["steamCap"] = v.getSteamCapacity()
-          listenerData[k]["steamFilledPercentage"] = v.getSteamFilledPercentage()
-          listenerData[k]["cooledCoolant"] = v.getCooledCoolant()
-          listenerData[k]["cooledCoolantCap"] = v.getCooledCoolantCapacity()
-          listenerData[k]["cooledCoolantNeeded"] = v.getCooledCoolantNeeded()
-          listenerData[k]["cooledCoolantFilledPercentage"] = v.getCooledCoolantFilledPercentage()
-          listenerData[k]["environmentalLoss"] = v.getEnvironmentalLoss()
-          listenerData[k]["temperature"] = v.getTemperature()
-          listenerData[k]["lastBoilRate"] = v.getBoilRate()
-          listenerData[k]["maxBoilRate"] = v.getMaxBoilRate()
-          listenerData[k]["superheaters"] = v.getSuperheaters()
-          listenerData[k]["boilCap"] = v.getBoilCapacity()
+          listenerData["DATA"]["water"] = v.getWater()
+          listenerData["DATA"]["waterCap"] = v.getWaterCapacity()
+          listenerData["DATA"]["waterFilledPercentage"] = v.getWaterFilledPercentage()
+          listenerData["DATA"]["heatedCoolant"] = v.getHeatedCoolant()
+          listenerData["DATA"]["heatedCoolantCap"] = v.getHeatedCoolantCapacity()
+          listenerData["DATA"]["heatedCoolantNeeded"] = v.getHeatedCoolantNeeded()
+          listenerData["DATA"]["heatedCoolantFilledPercentage"] = v.getHeatedCoolantFilledPercentage()
+          listenerData["DATA"]["steam"] = v.getSteam()
+          listenerData["DATA"]["steamCap"] = v.getSteamCapacity()
+          listenerData["DATA"]["steamFilledPercentage"] = v.getSteamFilledPercentage()
+          listenerData["DATA"]["cooledCoolant"] = v.getCooledCoolant()
+          listenerData["DATA"]["cooledCoolantCap"] = v.getCooledCoolantCapacity()
+          listenerData["DATA"]["cooledCoolantNeeded"] = v.getCooledCoolantNeeded()
+          listenerData["DATA"]["cooledCoolantFilledPercentage"] = v.getCooledCoolantFilledPercentage()
+          listenerData["DATA"]["environmentalLoss"] = v.getEnvironmentalLoss()
+          listenerData["DATA"]["temperature"] = v.getTemperature()
+          listenerData["DATA"]["lastBoilRate"] = v.getBoilRate()
+          listenerData["DATA"]["maxBoilRate"] = v.getMaxBoilRate()
+          listenerData["DATA"]["superheaters"] = v.getSuperheaters()
+          listenerData["DATA"]["boilCap"] = v.getBoilCapacity()
 
           -- Set status string
-          listenerData[k]["status"] = "Inactive"
-          if listenerData[k]["lastBoilRate"] > 1 then
-            listenerData[k]["status"] = "Active"
+          listenerData["DATA"]["status"] = "Inactive"
+          if listenerData["DATA"]["lastBoilRate"] > 1 then
+            listenerData["DATA"]["status"] = "Active"
           end
         end)
 
@@ -193,31 +195,33 @@ local function getListenerValues()
         end
       end
     elseif #turbines > 0 then
-      listenerData["type"] = "turbine"
+      listenerData["TYPE"] = "DATA"
+      listenerData["TAG"] = "TURBINE"
+
       for k, v in pairs(turbines) do
-        listenerData[k] = {}
+        listenerData["DATA"] = {}
         local status, err = pcall(function()
-          listenerData[k]["steam"] = v.getSteam()
-          listenerData[k]["steamCap"] = v.getSteamCapacity()
-          listenerData[k]["steamNeeded"] = v.getSteamNeeded()
-          listenerData[k]["lastSteamInputRate"] = v.getLastSteamInputRate()
-          listenerData[k]["steamFilledPercentage"] = v.getSteamFilledPercentage()
-          listenerData[k]["dumpingMode"] = v.getDumpingMode()
-          listenerData[k]["productionRate"] = v.getProductionRate()
-          listenerData[k]["maxProduction"] = v.getMaxProduction()
-          listenerData[k]["flowRate"] = v.getFlowRate()
-          listenerData[k]["maxFlowRate"] = v.getMaxFlowRate()
-          listenerData[k]["maxWaterOutput"] = v.getMaxWaterOutput()
-          listenerData[k]["dispersers"] = v.getDispersers()
-          listenerData[k]["vents"] = v.getVents()
-          listenerData[k]["blades"] = v.getBlades()
-          listenerData[k]["coils"] = v.getCoils()
-          listenerData[k]["condensers"] = v.getCondensers()
+          listenerData["DATA"]["steam"] = v.getSteam()
+          listenerData["DATA"]["steamCap"] = v.getSteamCapacity()
+          listenerData["DATA"]["steamNeeded"] = v.getSteamNeeded()
+          listenerData["DATA"]["lastSteamInputRate"] = v.getLastSteamInputRate()
+          listenerData["DATA"]["steamFilledPercentage"] = v.getSteamFilledPercentage()
+          listenerData["DATA"]["dumpingMode"] = v.getDumpingMode()
+          listenerData["DATA"]["productionRate"] = v.getProductionRate()
+          listenerData["DATA"]["maxProduction"] = v.getMaxProduction()
+          listenerData["DATA"]["flowRate"] = v.getFlowRate()
+          listenerData["DATA"]["maxFlowRate"] = v.getMaxFlowRate()
+          listenerData["DATA"]["maxWaterOutput"] = v.getMaxWaterOutput()
+          listenerData["DATA"]["dispersers"] = v.getDispersers()
+          listenerData["DATA"]["vents"] = v.getVents()
+          listenerData["DATA"]["blades"] = v.getBlades()
+          listenerData["DATA"]["coils"] = v.getCoils()
+          listenerData["DATA"]["condensers"] = v.getCondensers()
 
           -- Set status string
-          listenerData[k]["status"] = "Inactive"
-          if listenerData[k]["productionRate"] > 1 then
-            listenerData[k]["status"] = "Active"
+          listenerData["DATA"]["status"] = "Inactive"
+          if listenerData["DATA"]["productionRate"] > 1 then
+            listenerData["DATA"]["status"] = "Active"
           end
         end)
 
@@ -229,20 +233,21 @@ local function getListenerValues()
         end
       end
     elseif #induction > 0 then
-      listenerData["type"] = "induction"
+      listenerData["TYPE"] = "DATA"
+      listenerData["TAG"] = "INDUCTION"
       for k, v in pairs(induction) do
-        listenerData[k] = {}
+        listenerData["DATA"] = {}
 
         local status, err = pcall(function()
-          listenerData[k]["energy"] = v.getEnergy()
-          listenerData[k]["energyCap"] = v.getMaxEnergy()
-          listenerData[k]["energyNeeded"] = v.getEnergyNeeded()
-          listenerData[k]["energyFilledPercentage"] = v.getEnergyFilledPercentage()
-          listenerData[k]["transferCap"] = v.getTransferCap()
-          listenerData[k]["lastInput"] = v.getLastInput()
-          listenerData[k]["lastOutput"] = v.getLastOutput()
-          listenerData[k]["cells"] = v.getInstalledCells()
-          listenerData[k]["providers"] = v.getInstalledProviders()
+          listenerData["DATA"]["energy"] = v.getEnergy()
+          listenerData["DATA"]["energyCap"] = v.getMaxEnergy()
+          listenerData["DATA"]["energyNeeded"] = v.getEnergyNeeded()
+          listenerData["DATA"]["energyFilledPercentage"] = v.getEnergyFilledPercentage()
+          listenerData["DATA"]["transferCap"] = v.getTransferCap()
+          listenerData["DATA"]["lastInput"] = v.getLastInput()
+          listenerData["DATA"]["lastOutput"] = v.getLastOutput()
+          listenerData["DATA"]["cells"] = v.getInstalledCells()
+          listenerData["DATA"]["providers"] = v.getInstalledProviders()
           end)
 
         if not status then

@@ -19,48 +19,18 @@ end))
 local function listenForMessage()
   while true do
     local event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
-    if channel == modemChannel and not monitorNameMode and message then
-      local listenerType = message["type"]
+    if channel == modemChannel and message then
+      local listenerType = message["TAG"]
 
-      -- Call the methods of each jef module (only 1 reactor so message is sent directly)
-      if listenerType == "reactor" then
-        local status, err = pcall(function()
-          ws.send(message)
-          print("Got Data From Reactor!")
-        end)
-        if not status then
-          print(err)
-        end
-      end
+      --Convert Data into JSON format
+      local messageJson = textutils.serialiseJSON(message)
 
-      if listenerType == "boiler"then
-        local status, err = pcall(function()
-          ws.send(message)
-          print("Got Data From Boiler!")
-        end)
-        if not status then
-          print(err)
-        end
-      end
-
-      if listenerType == "turbine" then
-        local status, err = pcall(function()
-          ws.send(message)
-          print("Got Data From Turbine!")
-        end)
-        if not status then
-          print(err)
-        end
-      end
-
-      if listenerType == "induction" then
-        local status, err = pcall(function()
-          ws.send(message)
-          print("Got Data From Induction Matrix!")
-        end)
-        if not status then
-          print(err)
-        end
+      local status, err = pcall(function()
+        ws.send(messageJson)
+        print("Sending Data From: " .. listenerType)
+      end)
+      if not status then
+        print(err)
       end
     end
   end

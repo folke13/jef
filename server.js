@@ -65,7 +65,7 @@ webServer.listen(process.env.PORT || httpsPort || httpPort, function(){
 
 // Default https page
 webapp.get('/', function (req, res){
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, '/website/index.html'));
 });
 
 // Handle connections coming back from the browser clients (probably to send data to CC client)
@@ -78,6 +78,7 @@ httpsio.on('connection', (socket) => {
       // get the client address (needed to reconnect after)
       connection['WEBSOCKET'] = socket;
       connection['CCSOCKET'].send("Web-Client has Connected to JEF with UUID: " + connection['UUID']);
+      connection['STATUS'] = 'CONNECTED'
     }
   }
 
@@ -96,6 +97,7 @@ httpsio.on('connection', (socket) => {
           // get the client address (needed to reconnect after)
           connection['WEBSOCKET'] = socket.conn.remoteAddress;    // Will always be 1 when using localhost
           connection['CCSOCKET'].send("Web-Client has Connected!");
+          connection['STATUS'] = 'CONNECTING'
           connFound = true;
         }
       }
@@ -131,15 +133,17 @@ wss.on('connection', function connection(ws) {
       connections.push({
         'UUID' : uuid,
         'CCSOCKET' : ws,
-        'WEBSOCKET' : null
+        'WEBSOCKET' : null,
+        'STATUS' : 'NONE'
       });
 
       // Send back the UUID to the cc client
       ws.send(uuid);
     } else{
       for (const connection of connections){
-        if (connection['CCSOCKET'] == ws && connection['WEBSOCKET'] != null){
-          connection['WEBSOCKET'].send(data);
+        if (connection['CCSOCKET'] == ws && connection['WEBSOCKET'] != null && connection['STATUS'] == 'CONNECTED'){
+          let dataJson = data.toString().replace(/=/g, ":");
+          connection['WEBSOCKET'].send(JSON.parse(dataJson));
         }
       }
     }

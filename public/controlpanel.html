@@ -2,15 +2,362 @@
 <html>
   <head>
     <title>JEF - but in your browser</title>
+    <link rel="stylesheet" href="controlpanel.css">
   </head>
   <body>
 
-    <h1>You Connected!</h1>
+    <h1>Control Panel</h1>
 
-    <input class="textBox" id="input" maxlength="100" required/>
-    <input type="button" class="submitButton" value="Send Message" onClick="sendMessage();"/>
+    <div class="CategoryHeader">
+      <p>Reactor</p>
+      <p>Boiler</p>
+      <p>Turbine</p>
+      <p>Induction Matrix</p>
+    </div>
 
-    <div class="data">
+    <div class="DataContainer">
+      <table class="DataTable">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Heat Capacity: </td>
+          <td class="reactor-heatedCap"></td>
+        </tr>
+        <tr>
+          <td>Coolant Filled Percentage: </td>
+          <td class="reactor-coolantFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Damage Percentage: </td>
+          <td class="reactor-damagePercentage"></td>
+        </tr>
+        <tr>
+          <td>Fuel: </td>
+          <td class="reactor-fuel"></td>
+        </tr>
+        <tr>
+          <td>Waste Filled Percentage: </td>
+          <td class="reactor-wasteFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Actual Burnrate: </td>
+          <td class="reactor-actualBurnRate"></td>
+        </tr>
+        <tr>
+          <td>Fuel Needed: </td>
+          <td class="reactor-fuelNeeded"></td>
+        </tr>
+        <tr>
+          <td>Heat Capacity: </td>
+          <td class="reactor-heatedCap"></td>
+        </tr>
+        <tr>
+          <td>Fuel Assemblies: </td>
+          <td class="reactor-fuelAssemblies"></td>
+        </tr>
+        <tr>
+          <td>Coolant Capacity: </td>
+          <td class="reactor-coolantCap"></td>
+        </tr>
+        <tr>
+          <td>Boil Efficiency: </td>
+          <td class="reactor-boilEfficiency"></td>
+        </tr>
+        <tr>
+          <td>Max Burnrate: </td>
+          <td class="reactor-maxBurnRate"></td>
+        </tr>
+        <tr>
+          <td>Fuel Capacity: </td>
+          <td class="reactor-fuelCap"></td>
+        </tr>
+        <tr>
+          <td>Temperature: </td>
+          <td class="reactor-temperature"></td>
+        </tr>
+        <tr>
+          <td>Waste: </td>
+          <td class="reactor-waste"></td>
+        </tr>
+        <tr>
+          <td>Coolant Needed: </td>
+          <td class="reactor-coolantNeeded"></td>
+        </tr>
+        <tr>
+          <td>Fuel Filled Percentage: </td>
+          <td class="reactor-fuelFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Set Burnrate: </td>
+          <td class="reactor-burnRate"></td>
+        </tr>
+        <tr>
+          <td>Environmental Loss: </td>
+          <td class="reactor-enviromentalLoss"></td>
+        </tr>
+        <tr>
+          <td>Heated Filled Percentage: </td>
+          <td class="reactor-heatedFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Fuel Surface Area: </td>
+          <td class="reactor-fuelSurfaceArea"></td>
+        </tr>
+        <tr>
+          <td>Waste Capacity: </td>
+          <td class="reactor-wasteCap"></td>
+        </tr>
+        <tr>
+          <td>Waste Needed: </td>
+          <td class="reactor-wasteNeeded"></td>
+        </tr>
+        <tr>
+          <td>Heated Amount: </td>
+          <td class="reactor-heatedAmount"></td>
+        </tr>
+        <tr>
+          <td>Heated Type: </td>
+          <td class="reactor-heatedName"></td>
+        </tr>
+        <tr>
+          <td>Heating Rate: </td>
+          <td class="reactor-heatingRate"></td>
+        </tr>
+        <tr>
+          <td>Heating Needed: </td>
+          <td class="reactor-heatedNeeded"></td>
+        </tr>
+        <tr>
+          <td>Coolant Amount: </td>
+          <td class="reactor-coolantAmount"></td>
+        </tr>
+        <tr>
+          <td>Coolant Type: </td>
+          <td class="reactor-coolantName"></td>
+        </tr>
+        <tr>
+          <td>Status: </td>
+          <td class="reactor-status"></td>
+        </tr>
+      </table>
+
+      <table class="DataTable">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Boil Capacity: </td>
+          <td class="boiler-boilCap"></td>
+        </tr>
+        <tr>
+          <td>Cooled Coolant Name: </td>
+          <td class="boiler-cooledCoolantName"></td>
+        </tr>
+        <tr>
+          <td>Cooled Coolant Amount: </td>
+          <td class="boiler-cooledCoolantAmount"></td>
+        </tr>
+        <tr>
+          <td>Cooled Coolant Capacity: </td>
+          <td class="boiler-cooledCoolantCap"></td>
+        </tr>
+        <tr>
+          <td>Cooled Coolant Filled Percentage: </td>
+          <td class="boiler-cooledCoolantFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Cooled Coolant Needed: </td>
+          <td class="boiler-cooledCoolantNeeded"></td>
+        </tr>
+        <tr>
+          <td>Environmental Loss: </td>
+          <td class="boiler-environmentalLoss"></td>
+        </tr>
+        <tr>
+          <td>Heated Coolant Name: </td>
+          <td class="boiler-heatedCoolantName"></td>
+        </tr>
+        <tr>
+          <td>Heated Coolant Amount: </td>
+          <td class="boiler-heatedCoolantAmount"></td>
+        </tr>
+        <tr>
+          <td>Heated Coolant Capacity: </td>
+          <td class="boiler-heatedCoolantCap"></td>
+        </tr>
+        <tr>
+          <td>Heated Coolant Filled Percentage: </td>
+          <td class="boiler-heatedCoolantFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Heated Coolant Needed: </td>
+          <td class="boiler-heatedCoolantNeeded"></td>
+        </tr>
+        <tr>
+          <td>Last Boil Rate: </td>
+          <td class="boiler-lastBoilRate"></td>
+        </tr>
+        <tr>
+          <td>Max Boil Rate: </td>
+          <td class="boiler-maxBoilRate"></td>
+        </tr>
+        <tr>
+          <td>Steam: </td>
+          <td class="boiler-steam"></td>
+        </tr>
+        <tr>
+          <td>Steam Capacity: </td>
+          <td class="boiler-steamCap"></td>
+        </tr>
+        <tr>
+          <td>Steam Filled Percentage: </td>
+          <td class="boiler-steamFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Superheaters: </td>
+          <td class="boiler-superheaters"></td>
+        </tr>
+        <tr>
+          <td>Temperature: </td>
+          <td class="boiler-temperature"></td>
+        </tr>
+        <tr>
+          <td>Water: </td>
+          <td class="boiler-water"></td>
+        </tr>
+        <tr>
+          <td>Water Capacity: </td>
+          <td class="boiler-waterCap"></td>
+        </tr>
+        <tr>
+          <td>Water Filled Percentage: </td>
+          <td class="boiler-waterFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Status: </td>
+          <td class="boiler-status"></td>
+        </tr>
+      </table>
+
+      <table class="DataTable">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Blades: </td>
+          <td class="turbine-blades"></td>
+        </tr>
+        <tr>
+          <td>Coils: </td>
+          <td class="turbine-coils"></td>
+        </tr>
+        <tr>
+          <td>Condensers: </td>
+          <td class="turbine-condensers"></td>
+        </tr>
+        <tr>
+          <td>Dispersers: </td>
+          <td class="turbine-dispersers"></td>
+        </tr>
+        <tr>
+          <td>DumpingMode: </td>
+          <td class="turbine-dumpingMode"></td>
+        </tr>
+        <tr>
+          <td>Flowrate: </td>
+          <td class="turbine-flowRate"></td>
+        </tr>
+        <tr>
+          <td>Last Steam Input Rate: </td>
+          <td class="turbine-lastSteamInputRate"></td>
+        </tr>
+        <tr>
+          <td>Max Flow Rate: </td>
+          <td class="turbine-maxFlowRate"></td>
+        </tr>
+        <tr>
+          <td>Max Production: </td>
+          <td class="turbine-maxProduction"></td>
+        </tr>
+        <tr>
+          <td>Max Water Output: </td>
+          <td class="turbine-maxWaterOutput"></td>
+        </tr>
+        <tr>
+          <td>Productionrate: </td>
+          <td class="turbine-productionRate"></td>
+        </tr>
+        <tr>
+          <td>Steam: </td>
+          <td class="turbine-steam"></td>
+        </tr>
+        <tr>
+          <td>Steam Capacity: </td>
+          <td class="turbine-steamCap"></td>
+        </tr>
+        <tr>
+          <td>Steam Filled Percentage: </td>
+          <td class="turbine-steamFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Steam Needed: </td>
+          <td class="turbine-steamNeeded"></td>
+        </tr>
+        <tr>
+          <td>Vents: </td>
+          <td class="turbine-vents"></td>
+        </tr>
+        <tr>
+          <td>Status: </td>
+          <td class="turbine-status"></td>
+        </tr>
+      </table>
+
+      <table class="DataTable">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Cells: </td>
+          <td class="induction-cells"></td>
+        </tr>
+        <tr>
+          <td>Energy: </td>
+          <td class="induction-energy"></td>
+        </tr>
+        <tr>
+          <td>Energy Capacity: </td>
+          <td class="induction-energyCap"></td>
+        </tr>
+        <tr>
+          <td>Energy Filled Percentage: </td>
+          <td class="induction-energyFilledPercentage"></td>
+        </tr>
+        <tr>
+          <td>Energy Needed: </td>
+          <td class="induction-energyNeeded"></td>
+        </tr>
+        <tr>
+          <td>Last Input: </td>
+          <td class="induction-lastInput"></td>
+        </tr>
+        <tr>
+          <td>Last Output: </td>
+          <td class="induction-lastOutput"></td>
+        </tr>
+        <tr>
+          <td>Providers: </td>
+          <td class="induction-providers"></td>
+        </tr>
+        <tr>
+          <td>Transfer Capacity: </td>
+          <td class="induction-transferCap"></td>
+        </tr>
     </div>
 
     <script src="/jquery.js"></script>
