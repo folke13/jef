@@ -10,9 +10,18 @@ div.CategoryHeader {
 
 div.DataContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   justify-content: space-between;
+  padding: 10px 200px;
+}
+
+.ScramButton {
+  position: fixed;
+  bottom: 20px;
+  left: 40%;
+  width: 20%;
+  height: 10%;
 }
 
 table.DataTable {

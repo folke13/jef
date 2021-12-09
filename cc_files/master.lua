@@ -16,23 +16,38 @@ local wirelessModems = table.pack(peripheral.find("modem", function(_, modem)
   return modem.isWireless()
 end))
 
-local function listenForMessage()
+local function listenForPuppetMessage()
   while true do
     local event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
     if channel == modemChannel and message then
-      local listenerType = message["TAG"]
-
       --Convert Data into JSON format
       local messageJson = textutils.serialiseJSON(message)
 
       local status, err = pcall(function()
         ws.send(messageJson)
-        print("Sending Data From: " .. listenerType)
       end)
       if not status then
         print(err)
       end
     end
+  end
+end
+
+local function listenForServerMessage()
+  while true do
+    local status, err = pcall(function()
+      local data = ws.receive(10)
+
+      if data == 'SCRAM' then
+        --Got a SCRAM message, quickly send it to the puppet for reactor shutdown
+        print("SCRAM instruction Received!")
+      elseif data == 'RAD' then
+        -- Requesting All Data
+        print("RAD instruction Received!")
+      end
+
+      wirelessModems[1].transmit(modemChannel, modemChannel, data)
+    end)
   end
 end
 
@@ -53,7 +68,7 @@ local function main()
   end
 
   while true do
-    parallel.waitForAny(listenForMessage)
+    parallel.waitForAny(listenForPuppetMessage, listenForServerMessage)
     sleep(0.1)
   end
 end

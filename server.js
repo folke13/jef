@@ -72,13 +72,13 @@ webapp.get('/', function (req, res){
 httpsio.on('connection', (socket) => {
   console.log("Connection with webclient Established!");
 
-  // Check if connection is reconnect from the redirection
+  // Check if connection is reconnect from the redirection (comparing socket IP-adress)
   for (const connection of connections){
     if (connection['WEBSOCKET'] == socket.conn.remoteAddress){
-      // get the client address (needed to reconnect after)
       connection['WEBSOCKET'] = socket;
       connection['CCSOCKET'].send("Web-Client has Connected to JEF with UUID: " + connection['UUID']);
-      connection['STATUS'] = 'CONNECTED'
+      connection['CCSOCKET'].send('RAD');   // Request All Data
+      connection['STATUS'] = 'CONNECTED';
     }
   }
 
@@ -102,7 +102,7 @@ httpsio.on('connection', (socket) => {
         }
       }
 
-      // Return webpage with conenction to CC-Client
+      // Return webpage with connection to CC-Client
       if (connFound){
         console.log("Established Connection Link with UUID: " + message['UUID']);
         socket.emit('redirect', 'controlpanel.html');
@@ -142,8 +142,7 @@ wss.on('connection', function connection(ws) {
     } else{
       for (const connection of connections){
         if (connection['CCSOCKET'] == ws && connection['WEBSOCKET'] != null && connection['STATUS'] == 'CONNECTED'){
-          let dataJson = data.toString().replace(/=/g, ":");
-          connection['WEBSOCKET'].send(JSON.parse(dataJson));
+          connection['WEBSOCKET'].send(JSON.parse(data));
         }
       }
     }
