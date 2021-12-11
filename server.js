@@ -8,13 +8,12 @@ const { v4: uuidv4 } = require('uuid');
 const webapp = express();
 
 // Setup Variables
-const hostname = 'localhost';   // Needs to match DNS in ssl ext file
 const ccPort = 4000;
 const httpsPort = 443;
 const httpPort = 80;
-const useccTLS = false;
+const useccTLS = true;
 const usewebTLS = true;
-const useLocalSSL = true;   // Use the local certificate to test locally
+const useLocalSSL = false;   // Use the local certificate to test locally
 
 var connections = [];
 var sslInfo;

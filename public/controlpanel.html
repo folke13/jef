@@ -8,37 +8,32 @@
 
     <h1>Control Panel</h1>
 
-    <div class="CategoryHeader">
-      <p>Reactor</p>
-      <p>Boiler</p>
-      <p>Turbine</p>
-      <p>Induction Matrix</p>
-    </div>
-
     <div class="DataContainer">
       <table class="DataTable">
         <tr>
-          <th>Name</th>
-          <th>Value</th>
+          <th>Reactor</th>
+          <th></th>
         </tr>
-        <tr>
-          <td>Heated Coolant Stored: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="reactor-heatedAmount"></p>
-              <p>/</p>
-              <p class="reactor-heatedCap"></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Heated Coolant Difference: </td>
-          <td class="reactor-heatedNeeded"></td>
-        </tr>
-        <tr>
-          <td>Heated Coolant Percentage: </td>
-          <td class="reactor-heatedFilledPercentage"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Heated Coolant Stored: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="reactor-heatedAmount"></p>
+                <p>/</p>
+                <p class="reactor-heatedCap"></p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Heated Coolant Difference: </td>
+            <td class="reactor-heatedNeeded"></td>
+          </tr>
+          <tr>
+            <td>Heated Coolant Percentage: </td>
+            <td class="reactor-heatedFilledPercentage"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Fuel Stored: </td>
@@ -59,28 +54,30 @@
           <td class="reactor-fuelFilledPercentage"></td>
         </tr>
 
-        <tr>
-          <td>Coolant Stored: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="reactor-coolantAmount"></p>
-              <p>/</p>
-              <p class="reactor-coolantCap"></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Coolant Difference: </td>
-          <td class="reactor-coolantNeeded"></td>
-        </tr>
-        <tr>
-          <td>Coolant Percentage: </td>
-          <td class="reactor-coolantFilledPercentage"></td>
-        </tr>
-        <tr>
-          <td>Coolant Name: </td>
-          <td class="reactor-coolantName"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Coolant Stored: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="reactor-coolantAmount"></p>
+                <p>/</p>
+                <p class="reactor-coolantCap"></p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Coolant Difference: </td>
+            <td class="reactor-coolantNeeded"></td>
+          </tr>
+          <tr>
+            <td>Coolant Percentage: </td>
+            <td class="reactor-coolantFilledPercentage"></td>
+          </tr>
+          <tr>
+            <td>Coolant Name: </td>
+            <td class="reactor-coolantName"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Waste Stored: </td>
@@ -101,30 +98,33 @@
           <td class="reactor-wasteFilledPercentage"></td>
         </tr>
 
-        <tr>
-          <td>Fuel Assemblies: </td>
-          <td class="reactor-fuelAssemblies"></td>
-        </tr>
-        <tr>
-          <td>Fuel Surface Area: </td>
-          <td class="reactor-fuelSurfaceArea"></td>
-        </tr>
-        <tr>
-          <td>Boil Efficiency: </td>
-          <td class="reactor-boilEfficiency"></td>
-        </tr>
-        <tr>
-          <td>Heated Type: </td>
-          <td class="reactor-heatedName"></td>
-        </tr>
-        <tr>
-          <td>Heating Rate: </td>
-          <td class="reactor-heatingRate"></td>
-        </tr>
-        <tr>
-          <td>Environmental Loss: </td>
-          <td class="reactor-enviromentalLoss"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Fuel Assemblies: </td>
+            <td class="reactor-fuelAssemblies"></td>
+          </tr>
+          <tr>
+            <td>Fuel Surface Area: </td>
+            <td class="reactor-fuelSurfaceArea"></td>
+          </tr>
+          <tr>
+            <td>Boil Efficiency: </td>
+            <td class="reactor-boilEfficiency"></td>
+          </tr>
+          <tr>
+            <td>Heated Type: </td>
+            <td class="reactor-heatedName"></td>
+          </tr>
+          <tr>
+            <td>Heating Rate: </td>
+            <td class="reactor-heatingRate"></td>
+          </tr>
+          <tr>
+            <td>Environmental Loss: </td>
+            <td class="reactor-enviromentalLoss"></td>
+          </tr>
+        </tbody>
+
         <tr>
           <td>Temperature: </td>
           <td class="reactor-temperature"></td>
@@ -147,39 +147,43 @@
           <td>Set Burnrate: </td>
           <td class="reactor-burnRate"></td>
         </tr>
-        <tr>
-          <td>Status: </td>
-          <td class="reactor-status"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Status: </td>
+            <td class="reactor-status"></td>
+          </tr>
+        </tbody>
       </table>
 
       <table class="DataTable">
         <tr>
-          <th>Name</th>
-          <th>Value</th>
+          <th>Boiler</th>
+          <th></th>
         </tr>
-        <tr>
-          <td>Cooled Coolant Stored: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="boiler-cooledCoolantAmount"></p>
-              <p>/</p>
-              <p class="boiler-cooledCoolantCap"></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Cooled Coolant Difference: </td>
-          <td class="boiler-cooledCoolantNeeded"></td>
-        </tr>
-        <tr>
-          <td>Cooled Coolant Percentage: </td>
-          <td class="boiler-cooledCoolantFilledPercentage"></td>
-        </tr>
-        <tr>
-          <td>Cooled Coolant Name: </td>
-          <td class="boiler-cooledCoolantName"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Cooled Coolant Stored: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="boiler-cooledCoolantAmount"></p>
+                <p>/</p>
+                <p class="boiler-cooledCoolantCap"></p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Cooled Coolant Difference: </td>
+            <td class="boiler-cooledCoolantNeeded"></td>
+          </tr>
+          <tr>
+            <td>Cooled Coolant Percentage: </td>
+            <td class="boiler-cooledCoolantFilledPercentage"></td>
+          </tr>
+          <tr>
+            <td>Cooled Coolant Name: </td>
+            <td class="boiler-cooledCoolantName"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Heated Coolant Stored: </td>
@@ -204,20 +208,22 @@
           <td class="boiler-heatedCoolantName"></td>
         </tr>
 
-        <tr>
-          <td>Water Stored: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="boiler-water"></p>
-              <p>/</p>
-              <p class="boiler-waterCap"></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Water Percentage: </td>
-          <td class="boiler-waterFilledPercentage"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Water Stored: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="boiler-water"></p>
+                <p>/</p>
+                <p class="boiler-waterCap"></p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Water Percentage: </td>
+            <td class="boiler-waterFilledPercentage"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Steam Stored: </td>
@@ -234,20 +240,22 @@
           <td class="boiler-steamFilledPercentage"></td>
         </tr>
 
-        <tr>
-          <td>Boil Rate: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="boiler-lastBoilRate"></p>
-              <p>/</p>
-              <p class="boiler-maxBoilRate"></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Boil Capacity: </td>
-          <td class="boiler-boilCap"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Boil Rate: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="boiler-lastBoilRate"></p>
+                <p>/</p>
+                <p class="boiler-maxBoilRate"></p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Boil Capacity: </td>
+            <td class="boiler-boilCap"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Superheaters: </td>
@@ -257,43 +265,43 @@
           <td>Environmental Loss: </td>
           <td class="boiler-environmentalLoss"></td>
         </tr>
-        <tr>
-          <td>Temperature: </td>
-          <td class="boiler-temperature"></td>
-        </tr>
-        <tr>
-          <td>Status: </td>
-          <td class="boiler-status"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Temperature: </td>
+            <td class="boiler-temperature"></td>
+          </tr>
+        </tbody>
       </table>
 
       <table class="DataTable">
-        <tr>
-          <th>Name</th>
-          <th>Value</th>
-        </tr>
-        <tr>
-          <td>Steam Stored: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="turbine-steam"></p>
-              <p>/</p>
-              <p class="turbine-steamCap"></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Steam Percentage: </td>
-          <td class="turbine-steamFilledPercentage"></td>
-        </tr>
-        <tr>
-          <td>Steam Difference: </td>
-          <td class="turbine-steamNeeded"></td>
-        </tr>
-        <tr>
-          <td>Steam Input Rate: </td>
-          <td class="turbine-lastSteamInputRate"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <th>Turbine</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td>Steam Stored: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="turbine-steam"></p>
+                <p>/</p>
+                <p class="turbine-steamCap"></p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Steam Percentage: </td>
+            <td class="turbine-steamFilledPercentage"></td>
+          </tr>
+          <tr>
+            <td>Steam Difference: </td>
+            <td class="turbine-steamNeeded"></td>
+          </tr>
+          <tr>
+            <td>Steam Input Rate: </td>
+            <td class="turbine-lastSteamInputRate"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Flowrate: </td>
@@ -306,16 +314,18 @@
           </td>
         </tr>
 
-        <tr>
-          <td>Production Rate: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="turbine-productionRate"></p>
-              <p>/</p>
-              <p class="turbine-maxProduction"></p>
-            </div>
-          </td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Production Rate: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="turbine-productionRate"></p>
+                <p>/</p>
+                <p class="turbine-maxProduction"></p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Blades: </td>
@@ -341,39 +351,43 @@
           <td>Max Water Output: </td>
           <td class="turbine-maxWaterOutput"></td>
         </tr>
-        <tr>
-          <td>Dumping Mode: </td>
-          <td class="turbine-dumpingMode"></td>
-        </tr>
-        <tr>
-          <td>Status: </td>
-          <td class="turbine-status"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Dumping Mode: </td>
+            <td class="turbine-dumpingMode"></td>
+          </tr>
+          <tr>
+            <td>Status: </td>
+            <td class="turbine-status"></td>
+          </tr>
+        </tbody>
       </table>
 
       <table class="DataTable">
         <tr>
-          <th>Name</th>
-          <th>Value</th>
+          <th>Induction Matrix</th>
+          <th></th>
         </tr>
-        <tr>
-          <td>Energy Stored: </td>
-          <td>
-            <div style="display: flex; justify-content: space-between;">
-              <p class="induction-energy"></p>
-              <p>/</p>
-              <p class="induction-energyCap"></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Energy Difference: </td>
-          <td class="induction-energyNeeded"></td>
-        </tr>
-        <tr>
-          <td>Energy Percentage: </td>
-          <td class="induction-energyFilledPercentage"></td>
-        </tr>
+        <tbody class="darkBackground">
+          <tr>
+            <td>Energy Stored: </td>
+            <td>
+              <div style="display: flex; justify-content: space-between;">
+                <p class="induction-energy"></p>
+                <p>/</p>
+                <p class="induction-energyCap"></p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Energy Difference: </td>
+            <td class="induction-energyNeeded"></td>
+          </tr>
+          <tr>
+            <td>Energy Percentage: </td>
+            <td class="induction-energyFilledPercentage"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td>Last Input: </td>
@@ -383,18 +397,21 @@
           <td>Last Output: </td>
           <td class="induction-lastOutput"></td>
         </tr>
-        <tr>
-          <td>Cells: </td>
-          <td class="induction-cells"></td>
-        </tr>
-        <tr>
-          <td>Providers: </td>
-          <td class="induction-providers"></td>
-        </tr>
-        <tr>
-          <td>Transfer Capacity: </td>
-          <td class="induction-transferCap"></td>
-        </tr>
+
+        <tbody class="darkBackground">
+          <tr>
+            <td>Cells: </td>
+            <td class="induction-cells"></td>
+          </tr>
+          <tr>
+            <td>Providers: </td>
+            <td class="induction-providers"></td>
+          </tr>
+          <tr>
+            <td>Transfer Capacity: </td>
+            <td class="induction-transferCap"></td>
+          </tr>
+        </tbody>
     </div>
 
     <input type="button" class="ScramButton" value="SCRAM" onClick="scram();"/>
