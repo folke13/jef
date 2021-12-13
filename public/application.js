@@ -67,31 +67,58 @@ try{
 // Graph Updates & Management
 var reactorTempGraph = document.getElementById("reactorTempLine")
 
+function makeSVG(tag, attrs) {
+  var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (var k in attrs)
+    el.setAttribute(k, attrs[k]);
+  return el;
+}
+
 $(window).on('load', function() {
-  var x = 0;
+  var x = 440;
+  var xDiff= 40;
   var y1 = 0;
   var y2 = 0;
   var y = 0;
+  var lines = [];
   var counter = 0;
-  var point = 0 + "," + Math.round(Math.random() * 1000);
+  var lastPoint = 400 + "," + Math.round(Math.random() * 300);
+  var reactorTempLines = document.getElementById("reactorTempLines")
 
-  function upD() {
-    if(counter <= 12){
-      x += 40;
+  function addValueToGraph() {
+    if(counter < 11){
       y2 = y1;
       y1 = y;
-      y = Math.round(Math.random() * 70);
-      point += " " + x + "," + y;
-      console.log(counter);
+      y = Math.round(Math.random() * 300);
+      var newPoint = " " + x + "," + y;
 
-      document.getElementById('reactorTempLine').setAttribute('points',point);
-      console.log($.keyframe.isSupported());
+      // Push back existing lines
+      lines.forEach(function(line){
+        var oldAttr = line.getAttribute("points");
+        var numbers = oldAttr.match(/\d+/g);
+
+        console.log("numbers: " + numbers);
+        console.log("line amount: " + lines.length);
+
+        // Modify the numbers to shift left with xDiff
+        numbers[0] = numbers[0] - xDiff;
+        numbers[2] = numbers[2] - xDiff;
+
+        var newPoints = numbers[0] + "," + numbers[1] + " " + numbers[2] + "," + numbers[3];
+        line.setAttribute('points', newPoints);
+      });
+
+      // Create new line
+      var newLine = makeSVG('polyline', {points : lastPoint + " " + newPoint, stroke : "#ad0000"});
+      document.getElementById('reactorTempLines').appendChild(newLine);
+      lastPoint = " " + 400 + "," + y;
+      lines.push(newLine);
 
       // jquery keyframe library
-      $.keyframe.define({
+      /*$.keyframe.define({
          name: 'myfirst',
          from: {
-             'stroke-dashoffset': '80%'
+             'stroke-dashoffset': '100%'
          },
          to: {
             'stroke-dashoffset': '0'
@@ -101,13 +128,13 @@ $(window).on('load', function() {
       $("#reactorTempLine").css({"stroke-dasharray":'100%',"stroke-dashoffset":'100%'});
       $("#reactorTempLine").playKeyframe({
         name: 'myfirst',
-        duration: '5s',
+        duration: '2s',
         timingFunction: 'linear',
-        iterationCount: '1'
-      });
+        iterationCount: '11'
+      });*/
 
       counter = counter + 1;
     }
   }
-  window.setInterval(upD,1000);
+  window.setInterval(addValueToGraph,2000);
 });
