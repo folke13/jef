@@ -1,5 +1,3 @@
-import Keyframes from '@keyframes/core'
-
 try{
   var socket = io();
 
@@ -69,7 +67,7 @@ try{
 // Graph Updates & Management
 var reactorTempGraph = document.getElementById("reactorTempLine")
 
-$(document).ready(function() {
+$(window).on('load', function() {
   var x = 0;
   var y1 = 0;
   var y2 = 0;
