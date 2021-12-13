@@ -11,9 +11,9 @@ const webapp = express();
 const ccPort = 4000;
 const httpsPort = 443;
 const httpPort = 80;
-const useccTLS = true;
+const useccTLS = false;
 const usewebTLS = true;
-const useLocalSSL = false;   // Use the local certificate to test locally
+const useLocalSSL = true;   // Use the local certificate to test locally
 
 var connections = [];
 var sslInfo;
@@ -64,7 +64,7 @@ webServer.listen(process.env.PORT || httpsPort || httpPort, function(){
 
 // Default https page
 webapp.get('/', function (req, res){
-  res.sendFile(path.join(__dirname, '/website/index.html'));
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 // Handle connections coming back from the browser clients (probably to send data to CC client)
