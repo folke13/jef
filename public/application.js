@@ -65,8 +65,6 @@ try{
 
 
 // Graph Updates & Management
-var reactorTempGraph = document.getElementById("reactorTempLine")
-
 function makeSVG(tag, attrs) {
   var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
   for (var k in attrs)
@@ -74,67 +72,81 @@ function makeSVG(tag, attrs) {
   return el;
 }
 
-$(window).on('load', function() {
-  var x = 440;
-  var xDiff= 40;
-  var y1 = 0;
-  var y2 = 0;
-  var y = 0;
-  var lines = [];
-  var counter = 0;
-  var lastPoint = 400 + "," + Math.round(Math.random() * 300);
-  var reactorTempLines = document.getElementById("reactorTempLines")
+class Graph{
+  constructor(width, height, xDiff, lineLimit, container){
+    // Define the keyframe that will be used for animation
+    $.keyframe.define({
+       name: 'grow',
+       from: {
+           'stroke-dashoffset': '100%'
+       },
+       to: {
+          'stroke-dashoffset': '0'
+       }
+    });
 
-  function addValueToGraph() {
-    if(counter < 11){
-      y2 = y1;
-      y1 = y;
-      y = Math.round(Math.random() * 300);
-      var newPoint = " " + x + "," + y;
+    this.width = width;
+    this.height = height;
+    this.xDiff = xDiff;
+    this.lineLimit = lineLimit;
+    this.container = container;
 
-      // Push back existing lines
-      lines.forEach(function(line){
-        var oldAttr = line.getAttribute("points");
-        var numbers = oldAttr.match(/\d+/g);
-
-        console.log("numbers: " + numbers);
-        console.log("line amount: " + lines.length);
-
-        // Modify the numbers to shift left with xDiff
-        numbers[0] = numbers[0] - xDiff;
-        numbers[2] = numbers[2] - xDiff;
-
-        var newPoints = numbers[0] + "," + numbers[1] + " " + numbers[2] + "," + numbers[3];
-        line.setAttribute('points', newPoints);
-      });
-
-      // Create new line
-      var newLine = makeSVG('polyline', {points : lastPoint + " " + newPoint, stroke : "#ad0000"});
-      document.getElementById('reactorTempLines').appendChild(newLine);
-      lastPoint = " " + 400 + "," + y;
-      lines.push(newLine);
-
-      // jquery keyframe library
-      /*$.keyframe.define({
-         name: 'myfirst',
-         from: {
-             'stroke-dashoffset': '100%'
-         },
-         to: {
-            'stroke-dashoffset': '0'
-         }
-      });
-
-      $("#reactorTempLine").css({"stroke-dasharray":'100%',"stroke-dashoffset":'100%'});
-      $("#reactorTempLine").playKeyframe({
-        name: 'myfirst',
-        duration: '2s',
-        timingFunction: 'linear',
-        iterationCount: '11'
-      });*/
-
-      counter = counter + 1;
-    }
+    this.lines = [];
+    this.idCounter = 0;
+    this.lastPoint = width-xDiff + "," + height/2;
   }
-  window.setInterval(addValueToGraph,2000);
+
+  addEntry(newEntry){
+    // Remove old lines
+    if(this.lines.length >= this.lineLimit){
+      this.lines[0].remove();
+      this.lines.shift();
+    }
+
+    // Push back existing lines
+    var xDiff = this.xDiff;
+    this.lines.forEach(function(line){
+      var oldAttr = line.getAttribute("points");
+      var numbers = oldAttr.match(/\d+/g);
+      line.style.cssText = "stroke-dasharray:100%;stroke-dashoffset:0%";
+
+      // Modify the numbers to shift left with xDiff
+      numbers[0] = numbers[0] - xDiff;
+      numbers[2] = numbers[2] - xDiff;
+
+      var newPoints = numbers[0] + "," + numbers[1] + " " + numbers[2] + "," + numbers[3];
+      line.setAttribute('points', newPoints);
+    });
+
+    // Create new line
+    var newPoint = " " + this.width + "," + newEntry;
+    var newLine = makeSVG('polyline', {points : this.lastPoint + " " + newPoint, stroke : "#ad0000"});
+    newLine.id = "reactorLine-" + this.idCounter;
+    newLine.style.cssText = "stroke-dasharray:100%;stroke-dashoffset:100%";
+    document.getElementById('reactorTempLines').appendChild(newLine);
+
+    $("#reactorLine-" + this.idCounter).playKeyframe({
+      name: 'grow',
+      duration: '1s',
+      timingFunction: 'linear',
+      iterationCount: '1'
+    });
+
+    this.idCounter++;
+    if(this.idCounter >= this.lineLimit) this.idCounter = 0;
+    this.lastPoint = " " + (this.width - this.xDiff) + "," + y;
+    this.lines.push(newLine);
+  }
+}
+
+$(window).on('load', function() {
+  let tempGraph = new Graph(440, 300, 40, 11, document.getElementById('reactorTempLines'))
+
+  function addValueToGraph(){
+    y = Math.round(Math.random() * 300);
+
+    tempGraph.addEntry(y);
+  }
+
+  window.setInterval(addValueToGraph,1000);
 });
