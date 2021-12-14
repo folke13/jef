@@ -106,25 +106,15 @@ svg {
   margin: 0 auto;
   text-align: center;
   width: 100%;
-  padding-top: 40px;
 }
 
-#Banks1 {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 0.7s ease-in forwards;
-  fill: none;
-  /*animation-iteration-count: 10;*/
-  /*animation-direction: alternate;*/
+#graphUnit {
+  color: #FFFFFF;
+  font-size: 9;
+  font-style: italic;
+  opacity: 0.4;
 }
 
-@keyframes dash{
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.name {
-  font-size: .8rem;
-  font-weight: light;
+.graphContainer{
+  display: inline-block;
 }

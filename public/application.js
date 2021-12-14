@@ -1,68 +1,96 @@
-try{
-  var socket = io();
+var socket = io();
+let reactorTempGraph;
+let reactorCoolantGraph;
 
-  // Prints message to browser console that the server has logged connection
-  socket.on('connect', () => {
-    console.log('Connection Established with Server!');
-  });
+var bufferValues = {
+  'reactorTemp': null,
+  'reactorCoolantAmount': 1000000
+};
 
-  // Redirection message
-  socket.on('redirect', function(destination){
-    window.location.href = destination;
-  });
+$(window).on('load', function() {
+  reactorTempGraph = new Graph(440, 300, 40, 11, document.getElementById('reactorTempLines'), 'reactorTempLine');
+  reactorCoolantGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorCoolantLines'), 'reactorCoolantLine');
 
-  // Recieve messages through the ioSocket and update the DOM with jquery
-  socket.on('message', (message) => {
-    console.log("Got a message!");
-    console.log(message);
-    //console.log('Something came along on the "Message" channel:', message);
+  function updateGraphs(){
+    if(bufferValues['reactorTemp'] != null){
+      var unitPerPixel = (300/(1200-200));
+      var pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorTemp']);
+      reactorTempGraph.addEntry(350-pixelAdjustedValue);
+    }
 
-    if (message["TAG"] == "REACTOR"){
-      for(var key in message["DATA"]){
+    if(bufferValues['reactorCoolantAmount'] != null){
+      unitPerPixel = (300/(583200000));
+      pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorCoolantAmount']);
+      reactorCoolantGraph.addEntry(290-pixelAdjustedValue);
+    }
+  }
+
+  window.setInterval(updateGraphs, 1000);
+});
+
+
+// Prints message to browser console that the server has logged connection
+socket.on('connect', () => {
+  console.log('Connection Established with Server!');
+});
+
+// Redirection message
+socket.on('redirect', function(destination){
+  window.location.href = destination;
+});
+
+// Recieve messages through the ioSocket and update the DOM with jquery
+socket.on('message', (message) => {
+  //console.log(message);
+  //console.log('Something came along on the "Message" channel:', message);
+
+  if (message["TAG"] == "REACTOR"){
+    for(var key in message["DATA"]){
+      if (message['DATA']['temperature'] && reactorTempGraph){
+        bufferValues['reactorTemp'] = message['DATA']['temperature'];
+      } else if(message['DATA']['coolantAmount'] && reactorCoolantGraph){
+        bufferValues['reactorCoolantAmount'] = message['DATA']['coolantAmount']
+      } else{
         $(".reactor-" + key).text(message["DATA"][key]);
       }
-    } else if(message["TAG"] == "BOILER"){
-      for(var key in message["DATA"]){
-        $(".boiler-" + key).text(message["DATA"][key]);
-      }
-    } else if(message["TAG"] == "TURBINE"){
-      for(var key in message["DATA"]){
-        $(".turbine-" + key).text(message["DATA"][key]);
-      }
-    } else if(message["TAG"] == "INDUCTION"){
-      for(var key in message["DATA"]){
-        $(".induction-" + key).text(message["DATA"][key]);
-      }
     }
+  } else if(message["TAG"] == "BOILER"){
+    for(var key in message["DATA"]){
+      $(".boiler-" + key).text(message["DATA"][key]);
+    }
+  } else if(message["TAG"] == "TURBINE"){
+    for(var key in message["DATA"]){
+      $(".turbine-" + key).text(message["DATA"][key]);
+    }
+  } else if(message["TAG"] == "INDUCTION"){
+    for(var key in message["DATA"]){
+      $(".induction-" + key).text(message["DATA"][key]);
+    }
+  }
+});
+
+var input = document.getElementById('input');
+
+function submit(){
+  socket.send({
+    'TYPE' : "RCO",
+    'UUID' : input.value
   });
-
-  var input = document.getElementById('input');
-
-  function submit(){
-    socket.send({
-      'TYPE' : "RCO",
-      'UUID' : input.value
-    });
-  }
-
-  function scram(){
-    socket.send({
-      'TYPE' : 'MSG',
-      'DATA' : 'SCRAM'
-    });
-  }
-
-  function sendMessage(){
-    socket.send({
-      'TYPE' : 'MSG',
-      'DATA' : input.value
-    });
-  }
-} catch(err){
-  console.log(err);
 }
 
+function scram(){
+  socket.send({
+    'TYPE' : 'MSG',
+    'DATA' : 'SCRAM'
+  });
+}
 
+function sendMessage(){
+  socket.send({
+    'TYPE' : 'MSG',
+    'DATA' : input.value
+  });
+}
 
 // Graph Updates & Management
 function makeSVG(tag, attrs) {
@@ -73,7 +101,7 @@ function makeSVG(tag, attrs) {
 }
 
 class Graph{
-  constructor(width, height, xDiff, lineLimit, container){
+  constructor(width, height, xDiff, lineLimit, container, tag){
     // Define the keyframe that will be used for animation
     $.keyframe.define({
        name: 'grow',
@@ -90,10 +118,11 @@ class Graph{
     this.xDiff = xDiff;
     this.lineLimit = lineLimit;
     this.container = container;
+    this.tag = tag;
 
     this.lines = [];
     this.idCounter = 0;
-    this.lastPoint = width-xDiff + "," + height/2;
+    this.lastPoint = '';
   }
 
   addEntry(newEntry){
@@ -120,33 +149,22 @@ class Graph{
 
     // Create new line
     var newPoint = " " + this.width + "," + newEntry;
+    if(this.lastPoint == '') this.lastPoint = this.width-this.xDiff + "," + newEntry;
     var newLine = makeSVG('polyline', {points : this.lastPoint + " " + newPoint, stroke : "#ad0000"});
-    newLine.id = "reactorLine-" + this.idCounter;
+    newLine.id = this.tag + this.idCounter;
     newLine.style.cssText = "stroke-dasharray:100%;stroke-dashoffset:100%";
-    document.getElementById('reactorTempLines').appendChild(newLine);
+    this.container.appendChild(newLine);
 
-    $("#reactorLine-" + this.idCounter).playKeyframe({
+    $("#" + newLine.id).playKeyframe({
       name: 'grow',
-      duration: '1s',
+      duration: '10s',
       timingFunction: 'linear',
       iterationCount: '1'
     });
 
     this.idCounter++;
     if(this.idCounter >= this.lineLimit) this.idCounter = 0;
-    this.lastPoint = " " + (this.width - this.xDiff) + "," + y;
+    this.lastPoint = " " + (this.width - this.xDiff) + "," + newEntry;
     this.lines.push(newLine);
   }
 }
-
-$(window).on('load', function() {
-  let tempGraph = new Graph(440, 300, 40, 11, document.getElementById('reactorTempLines'))
-
-  function addValueToGraph(){
-    y = Math.round(Math.random() * 300);
-
-    tempGraph.addEntry(y);
-  }
-
-  window.setInterval(addValueToGraph,1000);
-});
