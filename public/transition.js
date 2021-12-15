@@ -13,7 +13,7 @@ reactorNavButton.onmousedown = function() {
   console.log("User Pressed Reactor Navigation Button");
   if (reactorMouseDown) reactorMouseDown();
 
-  reactorPage.style.display = "block";
+  reactorPage.style.display = "flex";
   boilerPage.style.display = "none";
   turbinePage.style.display = "none";
   inductionPage.style.display = "none";

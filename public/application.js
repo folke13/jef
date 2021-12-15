@@ -4,24 +4,37 @@ let reactorCoolantGraph;
 
 var bufferValues = {
   'reactorTemp': null,
-  'reactorCoolantAmount': 1000000
+  'reactorCoolantAmount': null,
+  'reactorHeatedAmount': null
 };
 
 $(window).on('load', function() {
   reactorTempGraph = new Graph(440, 300, 40, 11, document.getElementById('reactorTempLines'), 'reactorTempLine');
   reactorCoolantGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorCoolantLines'), 'reactorCoolantLine');
+  reactorHeatedGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorHeatedLines'), 'reactorHeatedLine');
+
+  socket.send({
+    'TYPE' : 'MSG',
+    'DATA' : 'RAD'
+  });
 
   function updateGraphs(){
     if(bufferValues['reactorTemp'] != null){
       var unitPerPixel = (300/(1200-200));
       var pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorTemp']);
-      reactorTempGraph.addEntry(350-pixelAdjustedValue);
+      reactorTempGraph.addEntry(325-pixelAdjustedValue);
     }
 
     if(bufferValues['reactorCoolantAmount'] != null){
       unitPerPixel = (300/(583200000));
       pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorCoolantAmount']);
-      reactorCoolantGraph.addEntry(290-pixelAdjustedValue);
+      reactorCoolantGraph.addEntry(347-pixelAdjustedValue);
+    }
+
+    if(bufferValues['reactorHeatedAmount'] != null){
+      unitPerPixel = (300/(5832000000));
+      pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorHeatedAmount']);
+      reactorHeatedGraph.addEntry(347-pixelAdjustedValue);
     }
   }
 
@@ -48,8 +61,10 @@ socket.on('message', (message) => {
     for(var key in message["DATA"]){
       if (message['DATA']['temperature'] && reactorTempGraph){
         bufferValues['reactorTemp'] = message['DATA']['temperature'];
-      } else if(message['DATA']['coolantAmount'] && reactorCoolantGraph){
-        bufferValues['reactorCoolantAmount'] = message['DATA']['coolantAmount']
+      } else if(message['DATA']['coolantAmount'] >= 0 && reactorCoolantGraph){
+        bufferValues['reactorCoolantAmount'] = message['DATA']['coolantAmount'];
+      } else if(message['DATA']['heatedAmount'] >= 0 && reactorHeatedGraph){
+        bufferValues['reactorHeatedAmount'] = message['DATA']['heatedAmount'];
       } else{
         $(".reactor-" + key).text(message["DATA"][key]);
       }

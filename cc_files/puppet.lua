@@ -31,7 +31,7 @@ local induction = {}
 
 -- Comapre values and send/update durent value if it's different
 local function checkValue(objectTable, tag, name, lastValue, newValue)
-  if  lastValue == nil then
+  if lastValue == nil then
     objectTable['lastData'][name] = newValue
     --print(name)   -- Used to show what field is causing nil problems
     print("Updating Value")

@@ -76,7 +76,6 @@ httpsio.on('connection', (socket) => {
     if (connection['WEBSOCKET'] == socket.conn.remoteAddress){
       connection['WEBSOCKET'] = socket;
       connection['CCSOCKET'].send("Web-Client has Connected to JEF with UUID: " + connection['UUID']);
-      connection['CCSOCKET'].send('RAD');   // Request All Data
       connection['STATUS'] = 'CONNECTED';
     }
   }

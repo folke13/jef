@@ -17,198 +17,293 @@
     <div class="pageContainer">
       <div class="reactorPage">
 
-        <div class="graphContainer">
-          <p id="graphUnit">Kelvin (K)</p>
-          <svg class='reactorTempSVG' width="600px" height="500px">
-            <g id="reactorTempGraph" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="yAxis" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                    <text id="200">
-                        <tspan x="11" y="310">200</tspan>
-                    </text>
-                    <text id="300">
-                        <tspan x="11" y="280">300</tspan>
-                    </text>
-                    <text id="400">
-                        <tspan x="11" y="250">400</tspan>
-                    </text>
-                    <text id="500">
-                        <tspan x="11" y="220">500</tspan>
-                    </text>
-                    <text id="600">
-                        <tspan x="11" y="190">600</tspan>
-                    </text>
-                    <text id="700">
-                        <tspan x="11" y="160">700</tspan>
-                    </text>
-                    <text id="800">
-                        <tspan x="11" y="130">800</tspan>
-                    </text>
-                    <text id="900">
-                        <tspan x="11" y="100">900</tspan>
-                    </text>
-                    <text id="1000">
-                        <tspan x="6" y="70">1000</tspan>
-                    </text>
-                    <text id="1100">
-                        <tspan x="6" y="40">1100</tspan>
-                    </text>
-                    <text id="1200">
-                        <tspan x="6" y="10">1200</tspan>
-                    </text>
-                </g>
-                <g id="reactorTempLines" transform="translate(71, 16)" stroke-linecap="round" stroke-width="5" stroke-linejoin="round">
-                </g>
-                <g id="xAxis" transform="translate(71, 320)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                    <text id="1">
-                        <tspan x="0" y="10">+11</tspan>
-                    </text>
-                    <text id="2">
-                        <tspan x="39" y="10">+10</tspan>
-                    </text>
-                    <text id="3">
-                        <tspan x="78" y="10">+9</tspan>
-                    </text>
-                    <text id="4">
-                        <tspan x="118" y="10">+8</tspan>
-                    </text>
-                    <text id="5">
-                        <tspan x="158" y="10">+7</tspan>
-                    </text>
-                    <text id="6">
-                        <tspan x="197" y="10">+6</tspan>
-                    </text>
-                    <text id="7">
-                        <tspan x="237" y="10">+5</tspan>
-                    </text>
-                    <text id="8">
-                        <tspan x="276" y="10">+4</tspan>
-                    </text>
-                    <text id="9">
-                        <tspan x="316" y="10">+3</tspan>
-                    </text>
-                    <text id="10">
-                        <tspan x="359" y="10">+2</tspan>
-                    </text>
-                    <text id="11">
-                        <tspan x="400" y="10">+1</tspan>
-                    </text>
-                    <text id="12">
-                        <tspan x="439" y="10">0</tspan>
-                    </text>
-                </g>
-                <g id="grid" transform="translate(46, 7)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
-                    <path d="M0,0 L500,0" id="Line"></path>
-                    <path d="M0,30 L500,30" id="Line"></path>
-                    <path d="M0,60 L500,60" id="Line"></path>
-                    <path d="M0,90 L500,90" id="Line"></path>
-                    <path d="M0,120 L500,120" id="Line"></path>
-                    <path d="M0,150 L500,150" id="Line"></path>
-                    <path d="M0,180 L500,180" id="Line"></path>
-                    <path d="M0,210 L500,210" id="Line"></path>
-                    <path d="M0,240 L500,240" id="Line"></path>
-                    <path d="M0,270 L500,270" id="Line"></path>
-                    <path d="M0,300 L500,300" id="Line"></path>
-                </g>
-            </g>
-          </svg>
+        <div class="upperSection">
+
         </div>
 
-        <div class="graphContainer">
-          <p id="graphUnit">MilliBucket (mB)</p>
-          <svg class='reactorCoolantSVG' width="600px" height="500px">
-            <g id="reactorCoolantGraph" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="yAxis" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                    <text id="200">
-                        <tspan x="60" y="310">0</tspan>
-                    </text>
-                    <text id="300">
-                        <tspan x="11" y="280">58,320,000</tspan>
-                    </text>
-                    <text id="400">
-                        <tspan x="6" y="250">116,640,000</tspan>
-                    </text>
-                    <text id="500">
-                        <tspan x="6" y="220">174,960,000</tspan>
-                    </text>
-                    <text id="600">
-                        <tspan x="6" y="190">233,280,000</tspan>
-                    </text>
-                    <text id="700">
-                        <tspan x="6" y="160">291,600,000</tspan>
-                    </text>
-                    <text id="800">
-                        <tspan x="6" y="130">349,920,000</tspan>
-                    </text>
-                    <text id="900">
-                        <tspan x="6" y="100">408,240,000</tspan>
-                    </text>
-                    <text id="1000">
-                        <tspan x="6" y="70">466,560,000</tspan>
-                    </text>
-                    <text id="1100">
-                        <tspan x="6" y="40">524,880,000</tspan>
-                    </text>
-                    <text id="1200">
-                        <tspan x="6" y="10">583,200,000</tspan>
-                    </text>
-                </g>
-                <g id="reactorCoolantLines" transform="translate(71, 16)" stroke-linecap="round" stroke-width="5" stroke-linejoin="round">
-                </g>
-                <g id="xAxis" transform="translate(71, 320)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                    <text id="1">
-                        <tspan x="39" y="10">+11</tspan>
-                    </text>
-                    <text id="2">
-                        <tspan x="78" y="10">+10</tspan>
-                    </text>
-                    <text id="3">
-                        <tspan x="118" y="10">+9</tspan>
-                    </text>
-                    <text id="4">
-                        <tspan x="158" y="10">+8</tspan>
-                    </text>
-                    <text id="5">
-                        <tspan x="197" y="10">+7</tspan>
-                    </text>
-                    <text id="6">
-                        <tspan x="237" y="10">+6</tspan>
-                    </text>
-                    <text id="7">
-                        <tspan x="276" y="10">+5</tspan>
-                    </text>
-                    <text id="8">
-                        <tspan x="316" y="10">+4</tspan>
-                    </text>
-                    <text id="9">
-                        <tspan x="359" y="10">+3</tspan>
-                    </text>
-                    <text id="10">
-                        <tspan x="400" y="10">+2</tspan>
-                    </text>
-                    <text id="11">
-                        <tspan x="439" y="10">+1</tspan>
-                    </text>
-                    <text id="12">
-                        <tspan x="479" y="10">0</tspan>
-                    </text>
-                </g>
-                <g id="grid" transform="translate(46, 7)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
-                    <path d="M35,0 L540,0" id="Line"></path>
-                    <path d="M35,30 L540,30" id="Line"></path>
-                    <path d="M35,60 L540,60" id="Line"></path>
-                    <path d="M35,90 L540,90" id="Line"></path>
-                    <path d="M35,120 L540,120" id="Line"></path>
-                    <path d="M35,150 L540,150" id="Line"></path>
-                    <path d="M35,180 L540,180" id="Line"></path>
-                    <path d="M35,210 L540,210" id="Line"></path>
-                    <path d="M35,240 L540,240" id="Line"></path>
-                    <path d="M35,270 L540,270" id="Line"></path>
-                    <path d="M35,300 L540,300" id="Line"></path>
-                </g>
-            </g>
-          </svg>
-        </div>
+        <div class="lowerSection">
+          <div class="graphContainer">
+            <p id="graphUnit">Kelvin (K)</p>
+            <svg class='reactorTempSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="200">
+                          <tspan x="11" y="310">200</tspan>
+                      </text>
+                      <text id="300">
+                          <tspan x="11" y="280">300</tspan>
+                      </text>
+                      <text id="400">
+                          <tspan x="11" y="250">400</tspan>
+                      </text>
+                      <text id="500">
+                          <tspan x="11" y="220">500</tspan>
+                      </text>
+                      <text id="600">
+                          <tspan x="11" y="190">600</tspan>
+                      </text>
+                      <text id="700">
+                          <tspan x="11" y="160">700</tspan>
+                      </text>
+                      <text id="800">
+                          <tspan x="11" y="130">800</tspan>
+                      </text>
+                      <text id="900">
+                          <tspan x="11" y="100">900</tspan>
+                      </text>
+                      <text id="1000">
+                          <tspan x="6" y="70">1000</tspan>
+                      </text>
+                      <text id="1100">
+                          <tspan x="6" y="40">1100</tspan>
+                      </text>
+                      <text id="1200">
+                          <tspan x="6" y="10">1200</tspan>
+                      </text>
+              </g>
+              <g id="reactorTempLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="0" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="39" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="78" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="118" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="158" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="197" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="237" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="276" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="316" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="359" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="400" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="439" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(46, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M0,0 L500,0" id="Line"></path>
+                      <path d="M0,30 L500,30" id="Line"></path>
+                      <path d="M0,60 L500,60" id="Line"></path>
+                      <path d="M0,90 L500,90" id="Line"></path>
+                      <path d="M0,120 L500,120" id="Line"></path>
+                      <path d="M0,150 L500,150" id="Line"></path>
+                      <path d="M0,180 L500,180" id="Line"></path>
+                      <path d="M0,210 L500,210" id="Line"></path>
+                      <path d="M0,240 L500,240" id="Line"></path>
+                      <path d="M0,270 L500,270" id="Line"></path>
+                      <path d="M0,300 L500,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
 
+          <div class="graphContainer">
+            <p id="graphUnit">MilliBucket (mB)</p>
+            <svg class='reactorCoolantSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="200">
+                          <tspan x="60" y="310">0</tspan>
+                      </text>
+                      <text id="300">
+                          <tspan x="11" y="280">58,320,000</tspan>
+                      </text>
+                      <text id="400">
+                          <tspan x="6" y="250">116,640,000</tspan>
+                      </text>
+                      <text id="500">
+                          <tspan x="6" y="220">174,960,000</tspan>
+                      </text>
+                      <text id="600">
+                          <tspan x="6" y="190">233,280,000</tspan>
+                      </text>
+                      <text id="700">
+                          <tspan x="6" y="160">291,600,000</tspan>
+                      </text>
+                      <text id="800">
+                          <tspan x="6" y="130">349,920,000</tspan>
+                      </text>
+                      <text id="900">
+                          <tspan x="6" y="100">408,240,000</tspan>
+                      </text>
+                      <text id="1000">
+                          <tspan x="6" y="70">466,560,000</tspan>
+                      </text>
+                      <text id="1100">
+                          <tspan x="6" y="40">524,880,000</tspan>
+                      </text>
+                      <text id="1200">
+                          <tspan x="6" y="10">583,200,000</tspan>
+                      </text>
+              </g>
+              <g id="reactorCoolantLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="39" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="78" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="118" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="158" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="197" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="237" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="276" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="316" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="359" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="400" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="439" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="479" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M35,0 L540,0" id="Line"></path>
+                      <path d="M35,30 L540,30" id="Line"></path>
+                      <path d="M35,60 L540,60" id="Line"></path>
+                      <path d="M35,90 L540,90" id="Line"></path>
+                      <path d="M35,120 L540,120" id="Line"></path>
+                      <path d="M35,150 L540,150" id="Line"></path>
+                      <path d="M35,180 L540,180" id="Line"></path>
+                      <path d="M35,210 L540,210" id="Line"></path>
+                      <path d="M35,240 L540,240" id="Line"></path>
+                      <path d="M35,270 L540,270" id="Line"></path>
+                      <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+
+          <div class="graphContainer" style="margin-left: 45px;">
+            <p id="graphUnit">MilliBucket (mB)</p>
+            <svg class='reactorHeatedSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="200">
+                          <tspan x="63" y="310">0</tspan>
+                      </text>
+                      <text id="300">
+                          <tspan x="9" y="280">583,200,000</tspan>
+                      </text>
+                      <text id="400">
+                          <tspan x="0" y="250">1,166,400,000</tspan>
+                      </text>
+                      <text id="500">
+                          <tspan x="0" y="220">1,749,600,000</tspan>
+                      </text>
+                      <text id="600">
+                          <tspan x="0" y="190">2,332,800,000</tspan>
+                      </text>
+                      <text id="700">
+                          <tspan x="0" y="160">2,916,000,000</tspan>
+                      </text>
+                      <text id="800">
+                          <tspan x="0" y="130">3,499,200,000</tspan>
+                      </text>
+                      <text id="900">
+                          <tspan x="0" y="100">4,082,400,000</tspan>
+                      </text>
+                      <text id="1000">
+                          <tspan x="0" y="70">4,665,600,000</tspan>
+                      </text>
+                      <text id="1100">
+                          <tspan x="0" y="40">5,248,800,000</tspan>
+                      </text>
+                      <text id="1200">
+                          <tspan x="0" y="10">5,832,000,000</tspan>
+                      </text>
+              </g>
+              <g id="reactorHeatedLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="39" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="78" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="118" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="158" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="197" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="237" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="276" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="316" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="359" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="400" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="439" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="479" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M35,0 L540,0" id="Line"></path>
+                      <path d="M35,30 L540,30" id="Line"></path>
+                      <path d="M35,60 L540,60" id="Line"></path>
+                      <path d="M35,90 L540,90" id="Line"></path>
+                      <path d="M35,120 L540,120" id="Line"></path>
+                      <path d="M35,150 L540,150" id="Line"></path>
+                      <path d="M35,180 L540,180" id="Line"></path>
+                      <path d="M35,210 L540,210" id="Line"></path>
+                      <path d="M35,240 L540,240" id="Line"></path>
+                      <path d="M35,270 L540,270" id="Line"></path>
+                      <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+        </div>
 
       </div>
 
