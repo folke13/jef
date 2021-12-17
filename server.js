@@ -9,10 +9,10 @@ const webapp = express();
 
 // Setup Variables
 const ccPort = 4000;
-const httpsPort = 443;
+const httpsPort = 80; // MODIFY BACK TO 443!!!!
 const httpPort = 80;
 const useccTLS = false;
-const usewebTLS = true;
+const usewebTLS = false;
 const useLocalSSL = true;   // Use the local certificate to test locally
 
 var connections = [];

@@ -18,12 +18,111 @@
       <div class="reactorPage">
 
         <div class="upperSection">
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Fuel Assemblies: </p>
+              <p>420</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Fuel Surface Area: </p>
+              <p>3,000</p>
+              <p> m2</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Boil Efficiency: </p>
+              <p>0.1</p>
+              <p>mB/t</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Heated Resource: </p>
+              <p>Obamium</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Heating-Rate: </p>
+              <p>69</p>
+              <p>mB/t</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Environmentalloss: </p>
+              <p>1</p>
+              <p>mB/t</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Damage Percentage: </p>
+              <p>1</p>
+              <p>%</p>
+            </div>
+          </div>
 
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Fuel: </p>
+              <p>1,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>mB</p>
+              <p> (0.1%)</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Waste: </p>
+              <p>3,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>mB</p>
+              <p> (0.3%)</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Cooled Coolant: </p>
+              <p>11,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>mB</p>
+              <p> (1.1%)</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Heated Coolant: </p>
+              <p>100,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>mB</p>
+              <p> (10%)</p>
+            </div>
+          </div>
+
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Status: </p>
+              <p id="statusValue">ACTIVE</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Temperature: </p>
+              <p>-100</p>
+              <p>K</p>
+            </div>
+          </div>
+
+          <div class="burnrateContainer">
+            <input type="number" placeholder="Enter Burnrate..."/>
+            <button>Set Burnrate</button>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Set Burnrate: </p>
+              <p>23</p>
+              <p>mB/t</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Current Burnrate: </p>
+              <p>130</p>
+              <p>mB/t</p>
+            </div>
+          </div>
         </div>
 
         <div class="lowerSection">
           <div class="graphContainer">
-            <p id="graphUnit">Kelvin (K)</p>
+            <div class="graphInfoContainer">
+              <p id="graphUnit">Kelvin (K)</p>
+              <p id="graphHeader">Temperature</p>
+            </div>
             <svg class='reactorTempSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                       <text id="200">
@@ -117,7 +216,10 @@
           </div>
 
           <div class="graphContainer">
-            <p id="graphUnit">MilliBucket (mB)</p>
+            <div class="graphInfoContainer">
+              <p id="graphUnit">MilliBucket (mB)</p>
+              <p id="graphHeader">Cooled Coolant</p>
+            </div>
             <svg class='reactorCoolantSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                       <text id="200">
@@ -211,7 +313,10 @@
           </div>
 
           <div class="graphContainer" style="margin-left: 45px;">
-            <p id="graphUnit">MilliBucket (mB)</p>
+            <div class="graphInfoContainer">
+              <p id="graphUnit">MilliBucket (mB)</p>
+              <p id="graphHeader">Heated Coolant</p>
+            </div>
             <svg class='reactorHeatedSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                       <text id="200">
