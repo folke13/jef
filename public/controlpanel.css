@@ -50,19 +50,21 @@ body {
   width: 100%;
   height: 100%;
   background-color: #1f1f1f;
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 
 .boilerPage {
-  display: none;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: #f390a4;
+  background-color: #1f1f1f;
 }
 
 .turbinePage {
   display: none;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: #f350f1;
@@ -70,6 +72,7 @@ body {
 
 .inductionPage {
   display: none;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: #a2f724;
@@ -199,6 +202,21 @@ svg {
   font-family: sans-serif;
   font-style: normal;
   background-color: grey;
+}
+
+#reactorToggleButton {
+  width: 180px;
+  height: 40px;
+  margin-bottom: 18px;
+  border-radius: 0px;
+  border: 1px white solid;
+
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-style: normal;
+  background-color: red;
 }
 
 .burnrateContainer p {

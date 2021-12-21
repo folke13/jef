@@ -25,7 +25,7 @@ boilerNavButton.onmousedown = function() {
   if (boilerMouseDown) boilerMouseDown();
 
   reactorPage.style.display = "none";
-  boilerPage.style.display = "block";
+  boilerPage.style.display = "flex";
   turbinePage.style.display = "none";
   inductionPage.style.display = "none";
 };
@@ -37,7 +37,7 @@ turbineNavButton.onmousedown = function() {
 
   reactorPage.style.display = "none";
   boilerPage.style.display = "none";
-  turbinePage.style.display = "block";
+  turbinePage.style.display = "flex";
   inductionPage.style.display = "none";
 };
 
@@ -49,5 +49,5 @@ inductionNavButton.onmousedown = function() {
   reactorPage.style.display = "none";
   boilerPage.style.display = "none";
   turbinePage.style.display = "none";
-  inductionPage.style.display = "block";
+  inductionPage.style.display = "flex";
 };
