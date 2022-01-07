@@ -2,6 +2,7 @@ var reactorNavButton = document.getElementById("reactorNavButton");
 var boilerNavButton = document.getElementById("boilerNavButton");
 var turbineNavButton = document.getElementById("turbineNavButton");
 var inductionNavButton = document.getElementById("inductionNavButton");
+var disconnectNavButton = document.getElementById("disconnectNavButton");
 
 var reactorPage = document.getElementsByClassName("reactorPage")[0];
 var boilerPage = document.getElementsByClassName("boilerPage")[0];
@@ -12,6 +13,11 @@ var reactorMouseDown = reactorNavButton.onmousedown;
 reactorNavButton.onmousedown = function() {
   console.log("User Pressed Reactor Navigation Button");
   if (reactorMouseDown) reactorMouseDown();
+
+  reactorNavButton.style.backgroundColor = "gray";
+  boilerNavButton.style.backgroundColor = "#333";
+  turbineNavButton.style.backgroundColor = "#333";
+  inductionNavButton.style.backgroundColor = "#333";
 
   reactorPage.style.display = "flex";
   boilerPage.style.display = "none";
@@ -24,6 +30,11 @@ boilerNavButton.onmousedown = function() {
   console.log("User Pressed Boiler Navigation Button");
   if (boilerMouseDown) boilerMouseDown();
 
+  reactorNavButton.style.backgroundColor = "#333";
+  boilerNavButton.style.backgroundColor = "gray";
+  turbineNavButton.style.backgroundColor = "#333";
+  inductionNavButton.style.backgroundColor = "#333";
+
   reactorPage.style.display = "none";
   boilerPage.style.display = "flex";
   turbinePage.style.display = "none";
@@ -35,6 +46,11 @@ turbineNavButton.onmousedown = function() {
   console.log("User Pressed Turbine Navigation Button");
   if (turbineMouseDown) turbineMouseDown();
 
+  reactorNavButton.style.backgroundColor = "#333";
+  boilerNavButton.style.backgroundColor = "#333";
+  turbineNavButton.style.backgroundColor = "gray";
+  inductionNavButton.style.backgroundColor = "#333";
+
   reactorPage.style.display = "none";
   boilerPage.style.display = "none";
   turbinePage.style.display = "flex";
@@ -45,6 +61,11 @@ var inductionMouseDown = inductionNavButton.onmousedown;
 inductionNavButton.onmousedown = function() {
   console.log("User Pressed Induction Navigation Button");
   if (inductionMouseDown) inductionMouseDown();
+
+  reactorNavButton.style.backgroundColor = "#333";
+  boilerNavButton.style.backgroundColor = "#333";
+  turbineNavButton.style.backgroundColor = "#333";
+  inductionNavButton.style.backgroundColor = "gray";
 
   reactorPage.style.display = "none";
   boilerPage.style.display = "none";

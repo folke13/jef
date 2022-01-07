@@ -8,15 +8,20 @@
     <h1 id="title">J.E.F - Control Panel</h1>
 
     <div class="navContainer">
-      <p id="reactorNavButton">Reactor</p>
-      <p id="boilerNavButton">Boiler</p>
-      <p id="turbineNavButton">Turbine</p>
-      <p id="inductionNavButton">Induction Matrix</p>
+      <div class="navLeft">
+        <p id="reactorNavButton">Reactor</p>
+        <p id="boilerNavButton">Boiler</p>
+        <p id="turbineNavButton">Turbine</p>
+        <p id="inductionNavButton">Induction Matrix</p>
+      </div>
+      <div class="navRight">
+        <p id="disconnectNavButton"><a href="index.html" style="float: right;">Disconnect</a></p>
+      </div>
     </div>
 
     <div class="pageContainer">
+      <!-- Reactor Page -->
       <div class="reactorPage">
-
         <div class="upperSection">
           <div class="statisticContainer">
             <div class="statisticLine">
@@ -122,140 +127,43 @@
           <div class="graphContainer">
             <div class="graphInfoContainer">
               <p id="graphUnit">Kelvin (K)</p>
-              <p id="graphHeader">Temperature&emsp;&emsp;&ensp;</p>
-            </div>
-            <svg class='reactorTempSVG' width="600px" height="500px">
-              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="200">
-                          <tspan x="11" y="310">200</tspan>
-                      </text>
-                      <text id="300">
-                          <tspan x="11" y="280">300</tspan>
-                      </text>
-                      <text id="400">
-                          <tspan x="11" y="250">400</tspan>
-                      </text>
-                      <text id="500">
-                          <tspan x="11" y="220">500</tspan>
-                      </text>
-                      <text id="600">
-                          <tspan x="11" y="190">600</tspan>
-                      </text>
-                      <text id="700">
-                          <tspan x="11" y="160">700</tspan>
-                      </text>
-                      <text id="800">
-                          <tspan x="11" y="130">800</tspan>
-                      </text>
-                      <text id="900">
-                          <tspan x="11" y="100">900</tspan>
-                      </text>
-                      <text id="1000">
-                          <tspan x="6" y="70">1000</tspan>
-                      </text>
-                      <text id="1100">
-                          <tspan x="6" y="40">1100</tspan>
-                      </text>
-                      <text id="1200">
-                          <tspan x="6" y="10">1200</tspan>
-                      </text>
-              </g>
-              <g id="reactorTempLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
-              </g>
-              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="1">
-                          <tspan x="0" y="10">+11</tspan>
-                      </text>
-                      <text id="2">
-                          <tspan x="39" y="10">+10</tspan>
-                      </text>
-                      <text id="3">
-                          <tspan x="78" y="10">+9</tspan>
-                      </text>
-                      <text id="4">
-                          <tspan x="118" y="10">+8</tspan>
-                      </text>
-                      <text id="5">
-                          <tspan x="158" y="10">+7</tspan>
-                      </text>
-                      <text id="6">
-                          <tspan x="197" y="10">+6</tspan>
-                      </text>
-                      <text id="7">
-                          <tspan x="237" y="10">+5</tspan>
-                      </text>
-                      <text id="8">
-                          <tspan x="276" y="10">+4</tspan>
-                      </text>
-                      <text id="9">
-                          <tspan x="316" y="10">+3</tspan>
-                      </text>
-                      <text id="10">
-                          <tspan x="359" y="10">+2</tspan>
-                      </text>
-                      <text id="11">
-                          <tspan x="400" y="10">+1</tspan>
-                      </text>
-                      <text id="12">
-                          <tspan x="439" y="10">0</tspan>
-                      </text>
-              </g>
-              <g id="grid" transform="translate(46, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
-                      <path d="M0,0 L500,0" id="Line"></path>
-                      <path d="M0,30 L500,30" id="Line"></path>
-                      <path d="M0,60 L500,60" id="Line"></path>
-                      <path d="M0,90 L500,90" id="Line"></path>
-                      <path d="M0,120 L500,120" id="Line"></path>
-                      <path d="M0,150 L500,150" id="Line"></path>
-                      <path d="M0,180 L500,180" id="Line"></path>
-                      <path d="M0,210 L500,210" id="Line"></path>
-                      <path d="M0,240 L500,240" id="Line"></path>
-                      <path d="M0,270 L500,270" id="Line"></path>
-                      <path d="M0,300 L500,300" id="Line"></path>
-              </g>
-            </svg>
-          </div>
-
-          <div class="graphContainer">
-            <div class="graphInfoContainer">
-              <p id="graphUnit">MilliBucket (mB)</p>
-              <p id="graphHeader">Cooled Coolant</p>
+              <p id="graphHeader">Temperature</p>
             </div>
             <svg class='reactorCoolantSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="200">
-                          <tspan x="60" y="310">0</tspan>
-                      </text>
-                      <text id="300">
-                          <tspan x="11" y="280">58,320,000</tspan>
-                      </text>
-                      <text id="400">
-                          <tspan x="6" y="250">116,640,000</tspan>
-                      </text>
-                      <text id="500">
-                          <tspan x="6" y="220">174,960,000</tspan>
-                      </text>
-                      <text id="600">
-                          <tspan x="6" y="190">233,280,000</tspan>
-                      </text>
-                      <text id="700">
-                          <tspan x="6" y="160">291,600,000</tspan>
-                      </text>
-                      <text id="800">
-                          <tspan x="6" y="130">349,920,000</tspan>
-                      </text>
-                      <text id="900">
-                          <tspan x="6" y="100">408,240,000</tspan>
-                      </text>
-                      <text id="1000">
-                          <tspan x="6" y="70">466,560,000</tspan>
-                      </text>
-                      <text id="1100">
-                          <tspan x="6" y="40">524,880,000</tspan>
-                      </text>
-                      <text id="1200">
-                          <tspan x="6" y="10">583,200,000</tspan>
-                      </text>
+                <text id="200">
+                    <tspan x="54" y="310">200</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">300</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">400</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">500</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">600</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">700</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">800</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">900</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="48" y="70">1000</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="48" y="40">1100</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">1200</tspan>
+                </text>
               </g>
               <g id="reactorCoolantLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
@@ -313,46 +221,143 @@
             </svg>
           </div>
 
-          <div class="graphContainer" style="margin-left: 45px;">
+          <div class="graphContainer">
+            <div class="graphInfoContainer">
+              <p id="graphUnit">MilliBucket (mB)</p>
+              <p id="graphHeader">Cooled Coolant</p>
+            </div>
+            <svg class='reactorCoolantSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
+              </g>
+              <g id="reactorCoolantLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="39" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="78" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="118" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="158" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="197" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="237" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="276" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="316" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="359" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="400" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="439" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="479" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M35,0 L540,0" id="Line"></path>
+                      <path d="M35,30 L540,30" id="Line"></path>
+                      <path d="M35,60 L540,60" id="Line"></path>
+                      <path d="M35,90 L540,90" id="Line"></path>
+                      <path d="M35,120 L540,120" id="Line"></path>
+                      <path d="M35,150 L540,150" id="Line"></path>
+                      <path d="M35,180 L540,180" id="Line"></path>
+                      <path d="M35,210 L540,210" id="Line"></path>
+                      <path d="M35,240 L540,240" id="Line"></path>
+                      <path d="M35,270 L540,270" id="Line"></path>
+                      <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+
+          <div class="graphContainer">
             <div class="graphInfoContainer">
               <p id="graphUnit">MilliBucket (mB)</p>
               <p id="graphHeader">Heated Coolant</p>
             </div>
             <svg class='reactorHeatedSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="200">
-                          <tspan x="63" y="310">0</tspan>
-                      </text>
-                      <text id="300">
-                          <tspan x="9" y="280">583,200,000</tspan>
-                      </text>
-                      <text id="400">
-                          <tspan x="0" y="250">1,166,400,000</tspan>
-                      </text>
-                      <text id="500">
-                          <tspan x="0" y="220">1,749,600,000</tspan>
-                      </text>
-                      <text id="600">
-                          <tspan x="0" y="190">2,332,800,000</tspan>
-                      </text>
-                      <text id="700">
-                          <tspan x="0" y="160">2,916,000,000</tspan>
-                      </text>
-                      <text id="800">
-                          <tspan x="0" y="130">3,499,200,000</tspan>
-                      </text>
-                      <text id="900">
-                          <tspan x="0" y="100">4,082,400,000</tspan>
-                      </text>
-                      <text id="1000">
-                          <tspan x="0" y="70">4,665,600,000</tspan>
-                      </text>
-                      <text id="1100">
-                          <tspan x="0" y="40">5,248,800,000</tspan>
-                      </text>
-                      <text id="1200">
-                          <tspan x="0" y="10">5,832,000,000</tspan>
-                      </text>
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
               </g>
               <g id="reactorHeatedLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
@@ -410,11 +415,10 @@
             </svg>
           </div>
         </div>
-
       </div>
 
+      <!-- Boiler Page -->
       <div class="boilerPage">
-
         <div class="upperSection">
           <div class="statisticContainer">
             <div class="statisticLine">
@@ -485,96 +489,96 @@
           <div class="graphContainer">
             <div class="graphInfoContainer">
               <p id="graphUnit">MilliBucket (mB)</p>
-              <p id="graphHeader">Steam&emsp;&emsp;&ensp;</p>
+              <p id="graphHeader">Steam</p>
             </div>
-            <svg class='reactorTempSVG' width="600px" height="500px">
+            <svg class='boilerSteamSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="200">
-                          <tspan x="11" y="310">200</tspan>
-                      </text>
-                      <text id="300">
-                          <tspan x="11" y="280">300</tspan>
-                      </text>
-                      <text id="400">
-                          <tspan x="11" y="250">400</tspan>
-                      </text>
-                      <text id="500">
-                          <tspan x="11" y="220">500</tspan>
-                      </text>
-                      <text id="600">
-                          <tspan x="11" y="190">600</tspan>
-                      </text>
-                      <text id="700">
-                          <tspan x="11" y="160">700</tspan>
-                      </text>
-                      <text id="800">
-                          <tspan x="11" y="130">800</tspan>
-                      </text>
-                      <text id="900">
-                          <tspan x="11" y="100">900</tspan>
-                      </text>
-                      <text id="1000">
-                          <tspan x="6" y="70">1000</tspan>
-                      </text>
-                      <text id="1100">
-                          <tspan x="6" y="40">1100</tspan>
-                      </text>
-                      <text id="1200">
-                          <tspan x="6" y="10">1200</tspan>
-                      </text>
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
               </g>
-              <g id="reactorTempLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              <g id="boilerSteamLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
               <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="1">
-                          <tspan x="0" y="10">+11</tspan>
-                      </text>
-                      <text id="2">
-                          <tspan x="39" y="10">+10</tspan>
-                      </text>
-                      <text id="3">
-                          <tspan x="78" y="10">+9</tspan>
-                      </text>
-                      <text id="4">
-                          <tspan x="118" y="10">+8</tspan>
-                      </text>
-                      <text id="5">
-                          <tspan x="158" y="10">+7</tspan>
-                      </text>
-                      <text id="6">
-                          <tspan x="197" y="10">+6</tspan>
-                      </text>
-                      <text id="7">
-                          <tspan x="237" y="10">+5</tspan>
-                      </text>
-                      <text id="8">
-                          <tspan x="276" y="10">+4</tspan>
-                      </text>
-                      <text id="9">
-                          <tspan x="316" y="10">+3</tspan>
-                      </text>
-                      <text id="10">
-                          <tspan x="359" y="10">+2</tspan>
-                      </text>
-                      <text id="11">
-                          <tspan x="400" y="10">+1</tspan>
-                      </text>
-                      <text id="12">
-                          <tspan x="439" y="10">0</tspan>
-                      </text>
+                <text id="1">
+                    <tspan x="39" y="10">+11</tspan>
+                </text>
+                <text id="2">
+                    <tspan x="78" y="10">+10</tspan>
+                </text>
+                <text id="3">
+                    <tspan x="118" y="10">+9</tspan>
+                </text>
+                <text id="4">
+                    <tspan x="158" y="10">+8</tspan>
+                </text>
+                <text id="5">
+                    <tspan x="197" y="10">+7</tspan>
+                </text>
+                <text id="6">
+                    <tspan x="237" y="10">+6</tspan>
+                </text>
+                <text id="7">
+                    <tspan x="276" y="10">+5</tspan>
+                </text>
+                <text id="8">
+                    <tspan x="316" y="10">+4</tspan>
+                </text>
+                <text id="9">
+                    <tspan x="359" y="10">+3</tspan>
+                </text>
+                <text id="10">
+                    <tspan x="400" y="10">+2</tspan>
+                </text>
+                <text id="11">
+                    <tspan x="439" y="10">+1</tspan>
+                </text>
+                <text id="12">
+                    <tspan x="479" y="10">0</tspan>
+                </text>
               </g>
-              <g id="grid" transform="translate(46, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
-                      <path d="M0,0 L500,0" id="Line"></path>
-                      <path d="M0,30 L500,30" id="Line"></path>
-                      <path d="M0,60 L500,60" id="Line"></path>
-                      <path d="M0,90 L500,90" id="Line"></path>
-                      <path d="M0,120 L500,120" id="Line"></path>
-                      <path d="M0,150 L500,150" id="Line"></path>
-                      <path d="M0,180 L500,180" id="Line"></path>
-                      <path d="M0,210 L500,210" id="Line"></path>
-                      <path d="M0,240 L500,240" id="Line"></path>
-                      <path d="M0,270 L500,270" id="Line"></path>
-                      <path d="M0,300 L500,300" id="Line"></path>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                <path d="M35,0 L540,0" id="Line"></path>
+                <path d="M35,30 L540,30" id="Line"></path>
+                <path d="M35,60 L540,60" id="Line"></path>
+                <path d="M35,90 L540,90" id="Line"></path>
+                <path d="M35,120 L540,120" id="Line"></path>
+                <path d="M35,150 L540,150" id="Line"></path>
+                <path d="M35,180 L540,180" id="Line"></path>
+                <path d="M35,210 L540,210" id="Line"></path>
+                <path d="M35,240 L540,240" id="Line"></path>
+                <path d="M35,270 L540,270" id="Line"></path>
+                <path d="M35,300 L540,300" id="Line"></path>
               </g>
             </svg>
           </div>
@@ -584,43 +588,43 @@
               <p id="graphUnit">MilliBucket (mB)</p>
               <p id="graphHeader">Water</p>
             </div>
-            <svg class='reactorCoolantSVG' width="600px" height="500px">
+            <svg class='boilerWaterSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="200">
-                          <tspan x="60" y="310">0</tspan>
-                      </text>
-                      <text id="300">
-                          <tspan x="11" y="280">58,320,000</tspan>
-                      </text>
-                      <text id="400">
-                          <tspan x="6" y="250">116,640,000</tspan>
-                      </text>
-                      <text id="500">
-                          <tspan x="6" y="220">174,960,000</tspan>
-                      </text>
-                      <text id="600">
-                          <tspan x="6" y="190">233,280,000</tspan>
-                      </text>
-                      <text id="700">
-                          <tspan x="6" y="160">291,600,000</tspan>
-                      </text>
-                      <text id="800">
-                          <tspan x="6" y="130">349,920,000</tspan>
-                      </text>
-                      <text id="900">
-                          <tspan x="6" y="100">408,240,000</tspan>
-                      </text>
-                      <text id="1000">
-                          <tspan x="6" y="70">466,560,000</tspan>
-                      </text>
-                      <text id="1100">
-                          <tspan x="6" y="40">524,880,000</tspan>
-                      </text>
-                      <text id="1200">
-                          <tspan x="6" y="10">583,200,000</tspan>
-                      </text>
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
               </g>
-              <g id="reactorCoolantLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              <g id="boilerWaterLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
               <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                       <text id="1">
@@ -676,48 +680,48 @@
             </svg>
           </div>
 
-          <div class="graphContainer" style="margin-left: 45px;">
+          <div class="graphContainer">
             <div class="graphInfoContainer">
               <p id="graphUnit">MilliBucket (mB)</p>
               <p id="graphHeader">Heated Coolant</p>
             </div>
-            <svg class='reactorHeatedSVG' width="600px" height="500px">
+            <svg class='boilerHeatedSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
-                      <text id="200">
-                          <tspan x="63" y="310">0</tspan>
-                      </text>
-                      <text id="300">
-                          <tspan x="9" y="280">583,200,000</tspan>
-                      </text>
-                      <text id="400">
-                          <tspan x="0" y="250">1,166,400,000</tspan>
-                      </text>
-                      <text id="500">
-                          <tspan x="0" y="220">1,749,600,000</tspan>
-                      </text>
-                      <text id="600">
-                          <tspan x="0" y="190">2,332,800,000</tspan>
-                      </text>
-                      <text id="700">
-                          <tspan x="0" y="160">2,916,000,000</tspan>
-                      </text>
-                      <text id="800">
-                          <tspan x="0" y="130">3,499,200,000</tspan>
-                      </text>
-                      <text id="900">
-                          <tspan x="0" y="100">4,082,400,000</tspan>
-                      </text>
-                      <text id="1000">
-                          <tspan x="0" y="70">4,665,600,000</tspan>
-                      </text>
-                      <text id="1100">
-                          <tspan x="0" y="40">5,248,800,000</tspan>
-                      </text>
-                      <text id="1200">
-                          <tspan x="0" y="10">5,832,000,000</tspan>
-                      </text>
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
               </g>
-              <g id="reactorHeatedLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              <g id="boilerHeatedLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
               <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                       <text id="1">
@@ -773,151 +777,709 @@
             </svg>
           </div>
         </div>
-
       </div>
 
+      <!-- Turbine Page -->
       <div class="turbinePage">
-        <table class="DataTable">
-          <tbody class="darkBackground">
-            <tr>
-              <th>Turbine</th>
-              <th></th>
-            </tr>
-            <tr>
-              <td>Steam Stored: </td>
-              <td>
-                <div style="display: flex; justify-content: space-between;">
-                  <p class="turbine-steam"></p>
-                  <p>/</p>
-                  <p class="turbine-steamCap"></p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Steam Percentage: </td>
-              <td class="turbine-steamFilledPercentage"></td>
-            </tr>
-            <tr>
-              <td>Steam Difference: </td>
-              <td class="turbine-steamNeeded"></td>
-            </tr>
-            <tr>
-              <td>Steam Input Rate: </td>
-              <td class="turbine-lastSteamInputRate"></td>
-            </tr>
-          </tbody>
+        <div class="upperSection">
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Blades: </p>
+              <p>13</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Coils: </p>
+              <p>32</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Condensers: </p>
+              <p>24</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Dispersers: </p>
+              <p>17</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Vents: </p>
+              <p>89</p>
+            </div>
+          </div>
 
-          <tr>
-            <td>Flowrate: </td>
-            <td>
-              <div style="display: flex; justify-content: space-between;">
-                <p class="turbine-flowRate"></p>
-                <p>/</p>
-                <p class="turbine-maxFlowRate"></p>
-              </div>
-            </td>
-          </tr>
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Steam: </p>
+              <p>1,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>mB</p>
+              <p> (0.1%)</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Steam Input Rate: </p>
+              <p>1,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>mB/t</p>
+              <p> (0.1%)</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Flow Rate: </p>
+              <p>1,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>mB/t</p>
+              <p> (0.1%)</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Max Water Output: </p>
+              <p>3,000</p>
+              <p>mB/t</p>
+            </div>
+          </div>
 
-          <tbody class="darkBackground">
-            <tr>
-              <td>Production Rate: </td>
-              <td>
-                <div style="display: flex; justify-content: space-between;">
-                  <p class="turbine-productionRate"></p>
-                  <p>/</p>
-                  <p class="turbine-maxProduction"></p>
-                </div>
-              </td>
-            </tr>
-          </tbody>
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Status: </p>
+              <p id="statusValue">ACTIVE</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Dumping Mode: </p>
+              <p id="statusValue">ACTIVE</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Production Rate: </p>
+              <p>100,000</p>
+              <p>mB/t</p>
+            </div>
+          </div>
+        </div>
 
-          <tr>
-            <td>Blades: </td>
-            <td class="turbine-blades"></td>
-          </tr>
-          <tr>
-            <td>Coils: </td>
-            <td class="turbine-coils"></td>
-          </tr>
-          <tr>
-            <td>Condensers: </td>
-            <td class="turbine-condensers"></td>
-          </tr>
-          <tr>
-            <td>Dispersers: </td>
-            <td class="turbine-dispersers"></td>
-          </tr>
-          <tr>
-            <td>Vents: </td>
-            <td class="turbine-vents"></td>
-          </tr>
-          <tr>
-            <td>Max Water Output: </td>
-            <td class="turbine-maxWaterOutput"></td>
-          </tr>
-          <tbody class="darkBackground">
-            <tr>
-              <td>Dumping Mode: </td>
-              <td class="turbine-dumpingMode"></td>
-            </tr>
-            <tr>
-              <td>Status: </td>
-              <td class="turbine-status"></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="lowerSection">
+          <div class="graphContainer">
+            <div class="graphInfoContainer">
+              <p id="graphUnit">Energy (Fe)</p>
+              <p id="graphHeader">Energy Stored</p>
+            </div>
+            <svg class='turbineProductionSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
+              </g>
+              <g id="turbineProductionLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="1">
+                    <tspan x="39" y="10">+11</tspan>
+                </text>
+                <text id="2">
+                    <tspan x="78" y="10">+10</tspan>
+                </text>
+                <text id="3">
+                    <tspan x="118" y="10">+9</tspan>
+                </text>
+                <text id="4">
+                    <tspan x="158" y="10">+8</tspan>
+                </text>
+                <text id="5">
+                    <tspan x="197" y="10">+7</tspan>
+                </text>
+                <text id="6">
+                    <tspan x="237" y="10">+6</tspan>
+                </text>
+                <text id="7">
+                    <tspan x="276" y="10">+5</tspan>
+                </text>
+                <text id="8">
+                    <tspan x="316" y="10">+4</tspan>
+                </text>
+                <text id="9">
+                    <tspan x="359" y="10">+3</tspan>
+                </text>
+                <text id="10">
+                    <tspan x="400" y="10">+2</tspan>
+                </text>
+                <text id="11">
+                    <tspan x="439" y="10">+1</tspan>
+                </text>
+                <text id="12">
+                    <tspan x="479" y="10">0</tspan>
+                </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                <path d="M35,0 L540,0" id="Line"></path>
+                <path d="M35,30 L540,30" id="Line"></path>
+                <path d="M35,60 L540,60" id="Line"></path>
+                <path d="M35,90 L540,90" id="Line"></path>
+                <path d="M35,120 L540,120" id="Line"></path>
+                <path d="M35,150 L540,150" id="Line"></path>
+                <path d="M35,180 L540,180" id="Line"></path>
+                <path d="M35,210 L540,210" id="Line"></path>
+                <path d="M35,240 L540,240" id="Line"></path>
+                <path d="M35,270 L540,270" id="Line"></path>
+                <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+
+          <div class="graphContainer">
+            <div class="graphInfoContainer">
+              <p id="graphUnit">MilliBucket Per Tick (mB/t)</p>
+              <p id="graphHeader">Flowrate</p>
+            </div>
+            <svg class='turbineFlowrateSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
+              </g>
+              <g id="turbineFlowrateLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="39" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="78" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="118" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="158" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="197" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="237" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="276" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="316" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="359" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="400" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="439" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="479" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M35,0 L540,0" id="Line"></path>
+                      <path d="M35,30 L540,30" id="Line"></path>
+                      <path d="M35,60 L540,60" id="Line"></path>
+                      <path d="M35,90 L540,90" id="Line"></path>
+                      <path d="M35,120 L540,120" id="Line"></path>
+                      <path d="M35,150 L540,150" id="Line"></path>
+                      <path d="M35,180 L540,180" id="Line"></path>
+                      <path d="M35,210 L540,210" id="Line"></path>
+                      <path d="M35,240 L540,240" id="Line"></path>
+                      <path d="M35,270 L540,270" id="Line"></path>
+                      <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+
+          <div class="graphContainer">
+            <div class="graphInfoContainer">
+              <p id="graphUnit">MilliBucket (mB)</p>
+              <p id="graphHeader">Steam</p>
+            </div>
+            <svg class='turbineSteamSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
+              </g>
+              <g id="turbineSteamLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="39" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="78" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="118" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="158" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="197" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="237" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="276" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="316" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="359" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="400" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="439" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="479" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M35,0 L540,0" id="Line"></path>
+                      <path d="M35,30 L540,30" id="Line"></path>
+                      <path d="M35,60 L540,60" id="Line"></path>
+                      <path d="M35,90 L540,90" id="Line"></path>
+                      <path d="M35,120 L540,120" id="Line"></path>
+                      <path d="M35,150 L540,150" id="Line"></path>
+                      <path d="M35,180 L540,180" id="Line"></path>
+                      <path d="M35,210 L540,210" id="Line"></path>
+                      <path d="M35,240 L540,240" id="Line"></path>
+                      <path d="M35,270 L540,270" id="Line"></path>
+                      <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+        </div>
       </div>
 
+      <!-- Induction Page -->
       <div class="inductionPage">
-        <table class="DataTable">
-          <tr>
-            <th>Induction Matrix</th>
-            <th></th>
-          </tr>
-          <tbody class="darkBackground">
-            <tr>
-              <td>Energy Stored: </td>
-              <td>
-                <div style="display: flex; justify-content: space-between;">
-                  <p class="induction-energy"></p>
-                  <p>/</p>
-                  <p class="induction-energyCap"></p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Energy Difference: </td>
-              <td class="induction-energyNeeded"></td>
-            </tr>
-            <tr>
-              <td>Energy Percentage: </td>
-              <td class="induction-energyFilledPercentage"></td>
-            </tr>
-          </tbody>
+        <div class="upperSection">
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Transfer Capacity: </p>
+              <p>1,000</p>
+              <p>Fe/t</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Cells: </p>
+              <p>1,000</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Providers: </p>
+              <p>2,000</p>
+            </div>
+          </div>
 
-          <tr>
-            <td>Last Input: </td>
-            <td class="induction-lastInput"></td>
-          </tr>
-          <tr>
-            <td>Last Output: </td>
-            <td class="induction-lastOutput"></td>
-          </tr>
+          <div class="statisticContainer">
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Energy Stored: </p>
+              <p>1,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>Fe</p>
+              <p> (0.1%)</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Last Input: </p>
+              <p>3,000</p>
+              <p>Fe/t</p>
+            </div>
+            <div class="statisticLine">
+              <p id="statisticLineHeader">Last Output: </p>
+              <p>3,000</p>
+              <p>Fe/t</p>
+            </div>
+          </div>
+        </div>
 
-          <tbody class="darkBackground">
-            <tr>
-              <td>Cells: </td>
-              <td class="induction-cells"></td>
-            </tr>
-            <tr>
-              <td>Providers: </td>
-              <td class="induction-providers"></td>
-            </tr>
-            <tr>
-              <td>Transfer Capacity: </td>
-              <td class="induction-transferCap"></td>
-            </tr>
-          </tbody>
+        <div class="lowerSection">
+          <div class="graphContainer">
+            <div class="graphInfoContainer">
+              <p id="graphUnit">Energy (Fe)</p>
+              <p id="graphHeader">Energy Stored</p>
+            </div>
+            <svg class='inductionEnergySVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
+              </g>
+              <g id="inductionEnergyLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="1">
+                    <tspan x="39" y="10">+11</tspan>
+                </text>
+                <text id="2">
+                    <tspan x="78" y="10">+10</tspan>
+                </text>
+                <text id="3">
+                    <tspan x="118" y="10">+9</tspan>
+                </text>
+                <text id="4">
+                    <tspan x="158" y="10">+8</tspan>
+                </text>
+                <text id="5">
+                    <tspan x="197" y="10">+7</tspan>
+                </text>
+                <text id="6">
+                    <tspan x="237" y="10">+6</tspan>
+                </text>
+                <text id="7">
+                    <tspan x="276" y="10">+5</tspan>
+                </text>
+                <text id="8">
+                    <tspan x="316" y="10">+4</tspan>
+                </text>
+                <text id="9">
+                    <tspan x="359" y="10">+3</tspan>
+                </text>
+                <text id="10">
+                    <tspan x="400" y="10">+2</tspan>
+                </text>
+                <text id="11">
+                    <tspan x="439" y="10">+1</tspan>
+                </text>
+                <text id="12">
+                    <tspan x="479" y="10">0</tspan>
+                </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                <path d="M35,0 L540,0" id="Line"></path>
+                <path d="M35,30 L540,30" id="Line"></path>
+                <path d="M35,60 L540,60" id="Line"></path>
+                <path d="M35,90 L540,90" id="Line"></path>
+                <path d="M35,120 L540,120" id="Line"></path>
+                <path d="M35,150 L540,150" id="Line"></path>
+                <path d="M35,180 L540,180" id="Line"></path>
+                <path d="M35,210 L540,210" id="Line"></path>
+                <path d="M35,240 L540,240" id="Line"></path>
+                <path d="M35,270 L540,270" id="Line"></path>
+                <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+
+          <div class="graphContainer">
+            <div class="graphInfoContainer">
+              <p id="graphUnit">Energy Transfer (Fe/t)</p>
+              <p id="graphHeader">Energy Input</p>
+            </div>
+            <svg class='inductionInputSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
+              </g>
+              <g id="inductionInputLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="39" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="78" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="118" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="158" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="197" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="237" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="276" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="316" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="359" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="400" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="439" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="479" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M35,0 L540,0" id="Line"></path>
+                      <path d="M35,30 L540,30" id="Line"></path>
+                      <path d="M35,60 L540,60" id="Line"></path>
+                      <path d="M35,90 L540,90" id="Line"></path>
+                      <path d="M35,120 L540,120" id="Line"></path>
+                      <path d="M35,150 L540,150" id="Line"></path>
+                      <path d="M35,180 L540,180" id="Line"></path>
+                      <path d="M35,210 L540,210" id="Line"></path>
+                      <path d="M35,240 L540,240" id="Line"></path>
+                      <path d="M35,270 L540,270" id="Line"></path>
+                      <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
+
+          <div class="graphContainer">
+            <div class="graphInfoContainer">
+              <p id="graphUnit">Energy Transfer (Fe/t)</p>
+              <p id="graphHeader">Energy Output</p>
+            </div>
+            <svg class='inductionOutputSVG' width="600px" height="500px">
+              <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                <text id="200">
+                    <tspan x="60" y="310">0%</tspan>
+                </text>
+                <text id="300">
+                    <tspan x="54" y="280">10%</tspan>
+                </text>
+                <text id="400">
+                    <tspan x="54" y="250">20%</tspan>
+                </text>
+                <text id="500">
+                    <tspan x="54" y="220">30%</tspan>
+                </text>
+                <text id="600">
+                    <tspan x="54" y="190">40%</tspan>
+                </text>
+                <text id="700">
+                    <tspan x="54" y="160">50%</tspan>
+                </text>
+                <text id="800">
+                    <tspan x="54" y="130">60%</tspan>
+                </text>
+                <text id="900">
+                    <tspan x="54" y="100">70%</tspan>
+                </text>
+                <text id="1000">
+                    <tspan x="54" y="70">80%</tspan>
+                </text>
+                <text id="1100">
+                    <tspan x="54" y="40">90%</tspan>
+                </text>
+                <text id="1200">
+                    <tspan x="48" y="10">100%</tspan>
+                </text>
+              </g>
+              <g id="inductionOutputLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              </g>
+              <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                      <text id="1">
+                          <tspan x="39" y="10">+11</tspan>
+                      </text>
+                      <text id="2">
+                          <tspan x="78" y="10">+10</tspan>
+                      </text>
+                      <text id="3">
+                          <tspan x="118" y="10">+9</tspan>
+                      </text>
+                      <text id="4">
+                          <tspan x="158" y="10">+8</tspan>
+                      </text>
+                      <text id="5">
+                          <tspan x="197" y="10">+7</tspan>
+                      </text>
+                      <text id="6">
+                          <tspan x="237" y="10">+6</tspan>
+                      </text>
+                      <text id="7">
+                          <tspan x="276" y="10">+5</tspan>
+                      </text>
+                      <text id="8">
+                          <tspan x="316" y="10">+4</tspan>
+                      </text>
+                      <text id="9">
+                          <tspan x="359" y="10">+3</tspan>
+                      </text>
+                      <text id="10">
+                          <tspan x="400" y="10">+2</tspan>
+                      </text>
+                      <text id="11">
+                          <tspan x="439" y="10">+1</tspan>
+                      </text>
+                      <text id="12">
+                          <tspan x="479" y="10">0</tspan>
+                      </text>
+              </g>
+              <g id="grid" transform="translate(50, 66)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.08">
+                      <path d="M35,0 L540,0" id="Line"></path>
+                      <path d="M35,30 L540,30" id="Line"></path>
+                      <path d="M35,60 L540,60" id="Line"></path>
+                      <path d="M35,90 L540,90" id="Line"></path>
+                      <path d="M35,120 L540,120" id="Line"></path>
+                      <path d="M35,150 L540,150" id="Line"></path>
+                      <path d="M35,180 L540,180" id="Line"></path>
+                      <path d="M35,210 L540,210" id="Line"></path>
+                      <path d="M35,240 L540,240" id="Line"></path>
+                      <path d="M35,270 L540,270" id="Line"></path>
+                      <path d="M35,300 L540,300" id="Line"></path>
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
