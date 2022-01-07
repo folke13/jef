@@ -5,7 +5,6 @@
 ]]
 
 local modemChannel = 1
-local expectedTime = 1
 
 -- Connect to the server to send/receive data
 local adress = "ws://localhost:4000"
@@ -69,7 +68,7 @@ local function main()
 
   while true do
     parallel.waitForAny(listenForPuppetMessage, listenForServerMessage)
-    sleep(0.1)
+    sleep(0)
   end
 end
 

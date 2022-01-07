@@ -129,7 +129,7 @@
               <p id="graphUnit">Kelvin (K)</p>
               <p id="graphHeader">Temperature</p>
             </div>
-            <svg class='reactorCoolantSVG' width="600px" height="500px">
+            <svg class='reactorTempSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                 <text id="200">
                     <tspan x="54" y="310">200</tspan>
@@ -165,7 +165,7 @@
                     <tspan x="48" y="10">1200</tspan>
                 </text>
               </g>
-              <g id="reactorCoolantLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              <g id="reactorTempLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
               <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                       <text id="1">
@@ -527,7 +527,7 @@
                     <tspan x="48" y="10">100%</tspan>
                 </text>
               </g>
-              <g id="boilerSteamLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              <g id="boilerSteamLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
               <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                 <text id="1">
@@ -848,8 +848,11 @@
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Production Rate: </p>
-              <p>100,000</p>
-              <p>mB/t</p>
+              <p>1,000</p>
+              <p>/</p>
+              <p>1,000,000</p>
+              <p>Fe/t</p>
+              <p> (0.1%)</p>
             </div>
           </div>
         </div>
@@ -857,8 +860,8 @@
         <div class="lowerSection">
           <div class="graphContainer">
             <div class="graphInfoContainer">
-              <p id="graphUnit">Energy (Fe)</p>
-              <p id="graphHeader">Energy Stored</p>
+              <p id="graphUnit">Energy Per Tick (Fe/t)</p>
+              <p id="graphHeader">Energy Production</p>
             </div>
             <svg class='turbineProductionSVG' width="600px" height="500px">
               <g id="yAxis" transform="translate(0, 60)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
@@ -896,7 +899,7 @@
                     <tspan x="48" y="10">100%</tspan>
                 </text>
               </g>
-              <g id="turbineProductionLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              <g id="turbineProductionLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
               <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                 <text id="1">
@@ -1231,7 +1234,7 @@
                     <tspan x="48" y="10">100%</tspan>
                 </text>
               </g>
-              <g id="inductionEnergyLines" transform="translate(71, 100)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
+              <g id="inductionEnergyLines" transform="translate(71, 20)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round">
               </g>
               <g id="xAxis" transform="translate(71, 380)" font-size="11" font-family="Arial" fill="#FFFFFF" opacity="0.4" font-weight="normal">
                 <text id="1">

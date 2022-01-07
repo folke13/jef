@@ -1,15 +1,10 @@
 -- Config Options
 local modemChannel = 1
-local transmitInterval = 1 -- Seconds
-local proxyName = "peripheralProxy:"
+local transmitInterval = 0 -- Seconds
 local reactorName = "fissionReactorLogicAdapter"
-local reactorAPName = "fissionReactor"
 local boilerName = "boilerValve"
-local boilerAPName = "boiler"
 local turbineName = "turbineValve"
-local turbineAPName = "turbine"
 local inductionName = "inductionPort"
-local inductionAPName = "inductionMatrix"
 
 -- Find Wireless Modems
 local wirelessModems = table.pack(peripheral.find("modem", function(_, modem)
@@ -59,7 +54,7 @@ local function getListenerValues()
         print("Name of Connected Machines: " .. data)
       end
 
-      if string.find(remoteNames[1], reactorName .. "_%d") or string.find(remoteNames[1], proxyName .. reactorAPName .. "_%d") then
+      if string.find(remoteNames[1], reactorName .. "_%d") then
         print("Reactor Detected!")
 
         local object = peripheral.wrap(remoteNames[1])
@@ -70,7 +65,7 @@ local function getListenerValues()
         else
           reactor[1] = {['object'] = object, ['lastData'] = {}}  -- Save object and a lastData to compare later
         end
-      elseif string.find(remoteNames[1], boilerName .. "_%d") or string.find(remoteNames[1], proxyName .. boilerAPName .. "_%d") then
+      elseif string.find(remoteNames[1], boilerName .. "_%d") then
         print("Boiler Detected!")
 
         for k, v in pairs(remoteNames) do
@@ -84,7 +79,7 @@ local function getListenerValues()
             boilers[k] = {['object'] = object, ['lastData'] = {}}
           end
         end
-      elseif string.find(remoteNames[1], turbineName .. "_%d") or string.find(remoteNames[1], proxyName .. turbineAPName .. "_%d") then
+      elseif string.find(remoteNames[1], turbineName .. "_%d") then
         print("Turbine Detected!")
 
         for k, v in pairs(remoteNames) do
@@ -98,7 +93,7 @@ local function getListenerValues()
             turbines[k] = {['object'] = object, ['lastData'] = {}}
           end
         end
-      elseif string.find(remoteNames[1], inductionName .. "_%d") or string.find(remoteNames[1], proxyName .. inductionAPName .. "_%d") then
+      elseif string.find(remoteNames[1], inductionName .. "_%d") then
         print("Induction-Matrix Detected!")
         local object = peripheral.wrap(remoteNames[1])
         if object == nil then
@@ -123,20 +118,24 @@ local function getListenerValues()
     if  #reactor > 0 then
       for k, v in pairs(reactor) do
         local status, err = pcall(function()
+          checkValue(v, 'REACTOR', 'temperature', v['lastData']['temperature'], v['object'].getTemperature())
+          checkValue(v, 'REACTOR', 'coolantFilledPercentage', v['lastData']['coolantFilledPercentage'], v['object'].getCoolantFilledPercentage())
+          checkValue(v, 'REACTOR', 'heatedFilledPercentage', v['lastData']['heatedFilledPercentage'], v['object'].getHeatedCoolantFilledPercentage())
           checkValue(v, 'REACTOR', 'coolantName', v['lastData']['coolantName'], v['object'].getCoolant()['name'])
           checkValue(v, 'REACTOR', 'coolantAmount', v['lastData']['coolantAmount'], v['object'].getCoolant()['amount'])
           checkValue(v, 'REACTOR', 'coolantCap', v['lastData']['coolantCap'], v['object'].getCoolantCapacity())
           checkValue(v, 'REACTOR', 'coolantNeeded', v['lastData']['coolantNeeded'], v['object'].getCoolantNeeded())
-          checkValue(v, 'REACTOR', 'coolantFilledPercentage', v['lastData']['coolantFilledPercentage'], v['object'].getCoolantFilledPercentage())
           checkValue(v, 'REACTOR', 'heatedName', v['lastData']['heatedName'], v['object'].getHeatedCoolant()['name'])
           checkValue(v, 'REACTOR', 'heatedAmount', v['lastData']['heatedAmount'], v['object'].getHeatedCoolant()['amount'])
           checkValue(v, 'REACTOR', 'heatedCap', v['lastData']['heatedCap'], v['object'].getHeatedCoolantCapacity())
           checkValue(v, 'REACTOR', 'heatedNeeded', v['lastData']['heatedNeeded'], v['object'].getHeatedCoolantNeeded())
-          checkValue(v, 'REACTOR', 'heatedFilledPercentage', v['lastData']['heatedFilledPercentage'], v['object'].getHeatedCoolantFilledPercentage())
           checkValue(v, 'REACTOR', 'fuel', v['lastData']['fuel'], v['object'].getFuel())
           checkValue(v, 'REACTOR', 'fuelCap', v['lastData']['fuelCap'], v['object'].getFuelCapacity())
           checkValue(v, 'REACTOR', 'fuelNeeded', v['lastData']['fuelNeeded'], v['object'].getFuelNeeded())
           checkValue(v, 'REACTOR', 'fuelFilledPercentage', v['lastData']['fuelFilledPercentage'], v['object'].getFuelFilledPercentage())
+          checkValue(v, 'REACTOR', 'temperature', v['lastData']['temperature'], v['object'].getTemperature())
+          checkValue(v, 'REACTOR', 'coolantFilledPercentage', v['lastData']['coolantFilledPercentage'], v['object'].getCoolantFilledPercentage())
+          checkValue(v, 'REACTOR', 'heatedFilledPercentage', v['lastData']['heatedFilledPercentage'], v['object'].getHeatedCoolantFilledPercentage())
           checkValue(v, 'REACTOR', 'waste', v['lastData']['waste'], v['object'].getWaste())
           checkValue(v, 'REACTOR', 'wasteCap', v['lastData']['wasteCap'], v['object'].getWasteCapacity())
           checkValue(v, 'REACTOR', 'wasteNeeded', v['lastData']['wasteNeeded'], v['object'].getWasteNeeded())
@@ -147,7 +146,6 @@ local function getListenerValues()
           checkValue(v, 'REACTOR', 'damagePercentage', v['lastData']['damagePercentage'], v['object'].getDamagePercent())
           checkValue(v, 'REACTOR', 'heatingRate', v['lastData']['heatingRate'], v['object'].getHeatingRate())
           checkValue(v, 'REACTOR', 'enviromentalLoss', v['lastData']['enviromentalLoss'], v['object'].getEnvironmentalLoss())
-          checkValue(v, 'REACTOR', 'temperature', v['lastData']['temperature'], v['object'].getTemperature())
           checkValue(v, 'REACTOR', 'heatCapacity', v['lastData']['heatCapacity'], v['object'].getHeatCapacity())
           checkValue(v, 'REACTOR', 'fuelAssemblies', v['lastData']['fuelAssemblies'], v['object'].getFuelAssemblies())
           checkValue(v, 'REACTOR', 'fuelSurfaceArea', v['lastData']['fuelSurfaceArea'], v['object'].getFuelSurfaceArea())
@@ -215,13 +213,13 @@ local function getListenerValues()
           checkValue(v, 'TURBINE', 'steam', v['lastData']['steam'], v['object'].getSteam())
           checkValue(v, 'TURBINE', 'steamCap', v['lastData']['steamCap'], v['object'].getSteamCapacity())
           checkValue(v, 'TURBINE', 'steamNeeded', v['lastData']['steamNeeded'], v['object'].getSteamNeeded())
+          checkValue(v, 'TURBINE', 'maxProduction', v['lastData']['maxProduction'], v['object'].getMaxProduction())
+          checkValue(v, 'TURBINE', 'maxFlowRate', v['lastData']['maxFlowRate'], v['object'].getMaxFlowRate())
           checkValue(v, 'TURBINE', 'lastSteamInputRate', v['lastData']['lastSteamInputRate'], v['object'].getLastSteamInputRate())
           checkValue(v, 'TURBINE', 'steamFilledPercentage', v['lastData']['steamFilledPercentage'], v['object'].getSteamFilledPercentage())
           checkValue(v, 'TURBINE', 'dumpingMode', v['lastData']['dumpingMode'], v['object'].getDumpingMode())
           checkValue(v, 'TURBINE', 'productionRate', v['lastData']['productionRate'], v['object'].getProductionRate())
-          checkValue(v, 'TURBINE', 'maxProduction', v['lastData']['maxProduction'], v['object'].getMaxProduction())
           checkValue(v, 'TURBINE', 'flowRate', v['lastData']['flowRate'], v['object'].getFlowRate())
-          checkValue(v, 'TURBINE', 'maxFlowRate', v['lastData']['maxFlowRate'], v['object'].getMaxFlowRate())
           checkValue(v, 'TURBINE', 'maxWaterOutput', v['lastData']['maxWaterOutput'], v['object'].getMaxWaterOutput())
           checkValue(v, 'TURBINE', 'dispersers', v['lastData']['dispersers'], v['object'].getDispersers())
           checkValue(v, 'TURBINE', 'vents', v['lastData']['vents'], v['object'].getVents())

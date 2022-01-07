@@ -1,17 +1,50 @@
 var socket = io();
+
 let reactorTempGraph;
 let reactorCoolantGraph;
+let reactorHeatedGraph;
+let boilerSteamGraph;
+let boilerHeatedGraph;
+let boilerWaterGraph;
+let turbineProductionGraph;
+let turbineSteamGraph;
+let turbineFlowrateGraph;
+let inductionEnergyGraph;
+let inductionInputGraph;
+let inductionOutputGraph;
 
 var bufferValues = {
   'reactorTemp': null,
-  'reactorCoolantAmount': null,
-  'reactorHeatedAmount': null
+  'reactorCoolantPercentage': null,
+  'reactorHeatedPercentage': null,
+  'boilerSteamPercentage': null,
+  'boilerWaterPercentage': null,
+  'boilerHeatedPercentage': null,
+  'turbineProductionPercentage': null,
+  'turbineMaxProduction': null,
+  'turbineFlowratePercentage': null,
+  'turbineMaxFlowrate': null,
+  'turbineFlowrate': null,
+  'turbineSteamPercentage': null,
+  'inductionEnergyPercentage': null,
+  'inductionInput': null,
+  'inductionOutput': null,
+  'inductionTransferCap': null
 };
 
 $(window).on('load', function() {
-  reactorTempGraph = new Graph(440, 300, 40, 11, document.getElementById('reactorTempLines'), 'reactorTempLine');
+  reactorTempGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorTempLines'), 'reactorTempLine');
   reactorCoolantGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorCoolantLines'), 'reactorCoolantLine');
   reactorHeatedGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorHeatedLines'), 'reactorHeatedLine');
+  boilerSteamGraph = new Graph(480, 300, 40, 11, document.getElementById('boilerSteamLines'), 'boilerSteamLine');
+  boilerHeatedGraph = new Graph(480, 300, 40, 11, document.getElementById('boilerHeatedLines'), 'boilerHeatedLine');
+  boilerWaterGraph = new Graph(480, 300, 40, 11, document.getElementById('boilerWaterLines'), 'boilerWaterLine');
+  turbineProductionGraph = new Graph(480, 300, 40, 11, document.getElementById('turbineProductionLines'), 'turbineProductionLine');
+  turbineSteamGraph = new Graph(480, 300, 40, 11, document.getElementById('turbineSteamLines'), 'turbineSteamLine');
+  turbineFlowrateGraph = new Graph(480, 300, 40, 11, document.getElementById('turbineFlowrateLines'), 'turbineFlowrateLine');
+  inductionEnergyGraph = new Graph(480, 300, 40, 11, document.getElementById('inductionEnergyLines'), 'inductionEnergyLine');
+  inductionInputGraph = new Graph(480, 300, 40, 11, document.getElementById('inductionInputLines'), 'inductionInputLine');
+  inductionOutputGraph = new Graph(480, 300, 40, 11, document.getElementById('inductionOutputLines'), 'inductionOutputLine');
 
   socket.send({
     'TYPE' : 'MSG',
@@ -22,19 +55,62 @@ $(window).on('load', function() {
     if(bufferValues['reactorTemp'] != null){
       var unitPerPixel = (300/(1200-200));
       var pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorTemp']);
-      reactorTempGraph.addEntry(325-pixelAdjustedValue);
+      reactorTempGraph.addEntry(405 - pixelAdjustedValue);
     }
 
-    if(bufferValues['reactorCoolantAmount'] != null){
-      unitPerPixel = (300/(583200000));
-      pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorCoolantAmount']);
-      reactorCoolantGraph.addEntry(347-pixelAdjustedValue);
+    if(bufferValues['reactorCoolantPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['reactorCoolantPercentage']);
+      reactorCoolantGraph.addEntry(346 - yValue);
     }
 
-    if(bufferValues['reactorHeatedAmount'] != null){
-      unitPerPixel = (300/(5832000000));
-      pixelAdjustedValue = Math.floor(unitPerPixel * bufferValues['reactorHeatedAmount']);
-      reactorHeatedGraph.addEntry(347-pixelAdjustedValue);
+    if(bufferValues['reactorHeatedPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['reactorHeatedPercentage']);
+      reactorHeatedGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['boilerSteamPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['boilerSteamPercentage']);
+      boilerSteamGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['boilerWaterPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['boilerWaterPercentage']);
+      boilerWaterGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['boilerHeatedPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['boilerHeatedPercentage']);
+      boilerHeatedGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['turbineProductionPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['turbineProductionPercentage']);
+      turbineProductionGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['turbineFlowratePercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['turbineFlowratePercentage']);
+      turbineFlowrateGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['turbineSteamPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['turbineSteamPercentage']);
+      turbineSteamGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['inductionEnergyPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['inductionEnergyPercentage']);
+      inductionEnergyGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['inductionInputPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['inductionInputPercentage']);
+      inductionInputGraph.addEntry(346 - yValue);
+    }
+
+    if(bufferValues['inductionOutputPercentage'] != null){
+      yValue = Math.floor(300 * bufferValues['inductionOutputPercentage']);
+      inductionOutputGraph.addEntry(346 - yValue);
     }
   }
 
@@ -59,27 +135,61 @@ socket.on('message', (message) => {
 
   if (message["TAG"] == "REACTOR"){
     for(var key in message["DATA"]){
-      if (message['DATA']['temperature'] && reactorTempGraph){
+      if (message['DATA']['temperature'] >= 0 && reactorTempGraph){
         bufferValues['reactorTemp'] = message['DATA']['temperature'];
-      } else if(message['DATA']['coolantAmount'] >= 0 && reactorCoolantGraph){
-        bufferValues['reactorCoolantAmount'] = message['DATA']['coolantAmount'];
-      } else if(message['DATA']['heatedAmount'] >= 0 && reactorHeatedGraph){
-        bufferValues['reactorHeatedAmount'] = message['DATA']['heatedAmount'];
+      } else if(message['DATA']['coolantFilledPercentage'] >= 0 && reactorCoolantGraph){
+        bufferValues['reactorCoolantPercentage'] = message['DATA']['coolantFilledPercentage'];
+      } else if(message['DATA']['heatedFilledPercentage'] >= 0 && reactorHeatedGraph){
+        bufferValues['reactorHeatedPercentage'] = message['DATA']['heatedFilledPercentage'];
       } else{
         $(".reactor-" + key).text(message["DATA"][key]);
       }
     }
   } else if(message["TAG"] == "BOILER"){
     for(var key in message["DATA"]){
-      $(".boiler-" + key).text(message["DATA"][key]);
+      if (message['DATA']['steamFilledPercentage'] >= 0 && boilerSteamGraph){
+        bufferValues['boilerSteamPercentage'] = message['DATA']['steamFilledPercentage'];
+      } else if(message['DATA']['waterFilledPercentage'] >= 0 && boilerWaterGraph){
+        bufferValues['boilerWaterPercentage'] = message['DATA']['waterFilledPercentage'];
+      } else if(message['DATA']['heatedCoolantFilledPercentage'] >= 0 && boilerHeatedGraph){
+        bufferValues['boilerHeatedPercentage'] = message['DATA']['heatedCoolantFilledPercentage'];
+      } else{
+        $(".boiler-" + key).text(message["DATA"][key]);
+      }
     }
   } else if(message["TAG"] == "TURBINE"){
     for(var key in message["DATA"]){
-      $(".turbine-" + key).text(message["DATA"][key]);
+      if (message['DATA']['productionRate'] >= 0 && bufferValues['turbineMaxProduction'] > 0 && turbineProductionGraph){
+        bufferValues['turbineProductionPercentage'] = message['DATA']['productionRate'] / bufferValues['turbineMaxProduction'];
+      } else if(message['DATA']['flowRate'] >= 0 && bufferValues['turbineMaxFlowrate'] > 0 && turbineFlowrateGraph){
+        bufferValues['turbineFlowrate'] = message['DATA']['flowRate'];
+        bufferValues['turbineFlowratePercentage'] = message['DATA']['flowRate'] / bufferValues['turbineMaxFlowrate'];
+      } else if(message['DATA']['steamFilledPercentage'] >= 0 && turbineSteamGraph){
+        bufferValues['turbineSteamPercentage'] = message['DATA']['steamFilledPercentage'];
+      } else if(message['DATA']['maxProduction'] > 0){
+        bufferValues['turbineMaxProduction'] = message['DATA']['maxProduction'];
+      } else if(message['DATA']['maxFlowRate'] > 0){
+        bufferValues['turbineMaxFlowrate'] = message['DATA']['maxFlowRate'];
+        if(bufferValues['turbineFlowrate'] >= 0){
+          bufferValues['turbineFlowratePercentage'] = bufferValues['turbineFlowrate'] / bufferValues['turbineMaxFlowrate'];
+        }
+      }else{
+        $(".turbine-" + key).text(message["DATA"][key]);
+      }
     }
   } else if(message["TAG"] == "INDUCTION"){
     for(var key in message["DATA"]){
-      $(".induction-" + key).text(message["DATA"][key]);
+      if (message['DATA']['energyFilledPercentage'] >= 0 && inductionEnergyGraph){
+        bufferValues['inductionEnergyPercentage'] = message['DATA']['energyFilledPercentage'];
+      } else if(message['DATA']['lastInput'] >= 0 && bufferValues['inductionTransferCap'] > 0 && inductionInputGraph){
+        bufferValues['inductionInputPercentage'] = message['DATA']['lastInput'] / bufferValues['inductionTransferCap'];
+      } else if(message['DATA']['lastOutput'] >= 0 && bufferValues['inductionTransferCap'] > 0 && inductionOutputGraph){
+        bufferValues['inductionOutputPercentage'] = message['DATA']['lastOutput'] / bufferValues['inductionTransferCap'];
+      } else if(message['DATA']['transferCap'] > 0){
+        bufferValues['inductionTransferCap'] = message['DATA']['transferCap'];
+      } else{
+        $(".induction-" + key).text(message["DATA"][key]);
+      }
     }
   }
 });
