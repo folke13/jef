@@ -2,13 +2,20 @@
 <html>
   <head>
     <title>JEF - but in your browser</title>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
 
-    <h1>J.E.F</h1>
+    <h1 id="titleHeader">J.E.F</h1>
+    <div class="inputSection">
+      <input id="inputField" maxlength="100" placeholder="Enter UUID..." required/>
+      <button id="connectButton" onClick="connect();"><span>&nbsp&nbsp&nbspConnect</span></button>
+    </div>
+    <p id="inputInfo">*Code Given by Your CC Computer</p>
 
-    <input class="textBox" id="input" maxlength="100" required/>
-    <input type="button" class="submitButton" value="Submit" onClick="submit();"/>
+    <div class="footer">
+      <p>Ⓒ TheDwarfer - Try Not to Blow it Up</p>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
