@@ -117,15 +117,9 @@ $(window).on('load', function() {
   window.setInterval(updateGraphs, 1000);
 });
 
-
 // Prints message to browser console that the server has logged connection
 socket.on('connect', () => {
   console.log('Connection Established with Server!');
-});
-
-// Redirection message
-socket.on('redirect', function(destination){
-  window.location.href = destination;
 });
 
 // Recieve messages through the ioSocket and update the DOM with jquery
@@ -137,12 +131,13 @@ socket.on('message', (message) => {
     for(var key in message["DATA"]){
       if (message['DATA']['temperature'] >= 0 && reactorTempGraph){
         bufferValues['reactorTemp'] = message['DATA']['temperature'];
+        $("#reactor-temperature").text(message["DATA"][key]);
       } else if(message['DATA']['coolantFilledPercentage'] >= 0 && reactorCoolantGraph){
         bufferValues['reactorCoolantPercentage'] = message['DATA']['coolantFilledPercentage'];
       } else if(message['DATA']['heatedFilledPercentage'] >= 0 && reactorHeatedGraph){
         bufferValues['reactorHeatedPercentage'] = message['DATA']['heatedFilledPercentage'];
       } else{
-        $(".reactor-" + key).text(message["DATA"][key]);
+        $("#reactor-" + key).text(message["DATA"][key]);
       }
     }
   } else if(message["TAG"] == "BOILER"){
@@ -154,7 +149,7 @@ socket.on('message', (message) => {
       } else if(message['DATA']['heatedCoolantFilledPercentage'] >= 0 && boilerHeatedGraph){
         bufferValues['boilerHeatedPercentage'] = message['DATA']['heatedCoolantFilledPercentage'];
       } else{
-        $(".boiler-" + key).text(message["DATA"][key]);
+        $("#boiler-" + key).text(message["DATA"][key]);
       }
     }
   } else if(message["TAG"] == "TURBINE"){
@@ -174,7 +169,7 @@ socket.on('message', (message) => {
           bufferValues['turbineFlowratePercentage'] = bufferValues['turbineFlowrate'] / bufferValues['turbineMaxFlowrate'];
         }
       }else{
-        $(".turbine-" + key).text(message["DATA"][key]);
+        $("#turbine-" + key).text(message["DATA"][key]);
       }
     }
   } else if(message["TAG"] == "INDUCTION"){
@@ -188,20 +183,11 @@ socket.on('message', (message) => {
       } else if(message['DATA']['transferCap'] > 0){
         bufferValues['inductionTransferCap'] = message['DATA']['transferCap'];
       } else{
-        $(".induction-" + key).text(message["DATA"][key]);
+        $("#induction-" + key).text(message["DATA"][key]);
       }
     }
   }
 });
-
-var input = document.getElementById('input');
-
-function submit(){
-  socket.send({
-    'TYPE' : "RCO",
-    'UUID' : input.value
-  });
-}
 
 function scram(){
   socket.send({

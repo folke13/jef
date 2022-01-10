@@ -105,7 +105,8 @@ httpsio.on('connection', (socket) => {
         console.log("Established Connection Link with UUID: " + message['UUID']);
         socket.emit('redirect', 'controlpanel.html');
       } else{
-        console.log("No Connection with UUID " + message['UUID'] + " was found!")
+        console.log("No Connection with UUID " + message['UUID'] + " was found!");
+        socket.emit('warning', 'UUID Not Found');
       }
     } else if (message['TYPE'] == "MSG") {
       for (const connection of connections){
