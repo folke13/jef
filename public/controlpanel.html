@@ -49,7 +49,7 @@
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Environmentalloss: </p>
-              <p id="reactor-enviromentalLoss"></p>
+              <p id="reactor-environmentalLoss"></p>
               <p>mB/t</p>
             </div>
             <div class="statisticLine">
@@ -66,7 +66,9 @@
               <p>/</p>
               <p id="reactor-fuelCap"></p>
               <p>mB</p>
+              <p>&nbsp-</p>
               <p id="reactor-fuelFilledPercentage"></p>
+              <p>%</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Waste: </p>
@@ -74,7 +76,9 @@
               <p>/</p>
               <p id="reactor-wasteCap"></p>
               <p>mB</p>
+              <p>&nbsp-</p>
               <p id="reactor-wasteFilledPercentage"></p>
+              <p>%</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Cooled Coolant: </p>
@@ -82,7 +86,9 @@
               <p>/</p>
               <p id="reactor-coolantCap"></p>
               <p>mB</p>
+              <p>&nbsp-</p>
               <p id="reactor-coolantFilledPercentage"></p>
+              <p>%</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Heated Coolant: </p>
@@ -90,7 +96,9 @@
               <p>/</p>
               <p id="reactor-heatedCap"></p>
               <p>mB</p>
+              <p>&nbsp-</p>
               <p id="reactor-heatedFilledPercentage"></p>
+              <p>%</p>
             </div>
           </div>
 
@@ -104,7 +112,7 @@
               <p id="reactor-temperature"></p>
               <p>K</p>
             </div>
-            <button id="reactorToggleButton">SCRAM</button>
+            <button id="reactorToggleButton" onClick="scram()">SCRAM</button>
           </div>
 
           <div class="burnrateContainer">
@@ -112,12 +120,12 @@
             <button>Set Burnrate</button>
             <div class="statisticLine">
               <p id="statisticLineHeader">Set Burnrate: </p>
-              <p>23</p>
+              <p id="reactor-burnRate"></p>
               <p>mB/t</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Current Burnrate: </p>
-              <p>130</p>
+              <p id="reactor-actualBurnRate"></p>
               <p>mB/t</p>
             </div>
           </div>
@@ -423,64 +431,63 @@
           <div class="statisticContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Steam: </p>
-              <p>1,000</p>
+              <p id="boiler-steam"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="boiler-steamCap"></p>
               <p>mB</p>
-              <p> (0.1%)</p>
+              <p id="boiler-steamFilledPercentage"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Water: </p>
-              <p>3,000</p>
+              <p id="boiler-water"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="boiler-waterCap"></p>
               <p>mB</p>
-              <p> (0.3%)</p>
+              <p id="boiler-waterFilledPercentage"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Cooled Coolant: </p>
-              <p>11,000</p>
+              <p id="boiler-cooledCoolantAmount"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="boiler-cooledCoolantCap"></p>
               <p>mB</p>
-              <p> (1.1%)</p>
+              <p id="boiler-cooledCoolantFilledPercentage"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Heated Coolant: </p>
-              <p>100,000</p>
+              <p id="boiler-heatedCoolantAmount"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="boiler-heatedCoolantCap"></p>
               <p>mB</p>
-              <p> (10%)</p>
+              <p id="boiler-heatedCoolantFilledPercentage"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Environmental Loss: </p>
-              <p>3.89</p>
+              <p id="boiler-environmentalLoss"></p>
               <p>mB/t</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Superheaters: </p>
-              <p>32</p>
+              <p id="boiler-superheaters"></p>
             </div>
           </div>
 
           <div class="statisticContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Status: </p>
-              <p id="statusValue">ACTIVE</p>
+              <p id="boiler-status"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Temperature: </p>
-              <p>-100</p>
+              <p id="boiler-temperature"></p>
               <p>K</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Boil Rate: </p>
-              <p>100,000</p>
+              <p id="boiler-lastBoilRate"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="boiler-boilCap"></p>
               <p>mB/t</p>
-              <p> (10%)</p>
             </div>
           </div>
         </div>
@@ -785,54 +792,50 @@
           <div class="statisticContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Blades: </p>
-              <p>13</p>
+              <p id="turbine-blades"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Coils: </p>
-              <p>32</p>
+              <p id="turbine-coils"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Condensers: </p>
-              <p>24</p>
+              <p id="turbine-condensers"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Dispersers: </p>
-              <p>17</p>
+              <p id="turbine-dispersers"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Vents: </p>
-              <p>89</p>
+              <p id="turbine-vents"></p>
             </div>
           </div>
 
           <div class="statisticContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Steam: </p>
-              <p>1,000</p>
+              <p id="turbine-steam"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="turbine-steamCap"></p>
               <p>mB</p>
-              <p> (0.1%)</p>
+              <p id="turbine-steamFilledPercentage"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Steam Input Rate: </p>
-              <p>1,000</p>
-              <p>/</p>
-              <p>1,000,000</p>
+              <p id="turbine-lastSteamInputRate"></p>
               <p>mB/t</p>
-              <p> (0.1%)</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Flow Rate: </p>
-              <p>1,000</p>
+              <p id="turbine-flowRate"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="turbine-maxFlowRate"></p>
               <p>mB/t</p>
-              <p> (0.1%)</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Max Water Output: </p>
-              <p>3,000</p>
+              <p id="turbine-maxWaterOutput"></p>
               <p>mB/t</p>
             </div>
           </div>
@@ -840,19 +843,18 @@
           <div class="statisticContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Status: </p>
-              <p id="statusValue">ACTIVE</p>
+              <p id="turbine-status"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Dumping Mode: </p>
-              <p id="statusValue">ACTIVE</p>
+              <p id="turbine-dumpingMode"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Production Rate: </p>
-              <p>1,000</p>
+              <p id="turbine-productionRate"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="turbine-maxProduction"></p>
               <p>Fe/t</p>
-              <p> (0.1%)</p>
             </div>
           </div>
         </div>
@@ -1157,36 +1159,38 @@
           <div class="statisticContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Transfer Capacity: </p>
-              <p>1,000</p>
+              <p id="induction-transferCap"></p>
               <p>Fe/t</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Cells: </p>
-              <p>1,000</p>
+              <p id="induction-cells"></p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Providers: </p>
-              <p>2,000</p>
+              <p id="induction-providers"></p>
             </div>
           </div>
 
           <div class="statisticContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Energy Stored: </p>
-              <p>1,000</p>
+              <p id="induction-energy"></p>
               <p>/</p>
-              <p>1,000,000</p>
+              <p id="induction-energyCap"></p>
               <p>Fe</p>
-              <p> (0.1%)</p>
+              <p>&nbsp-</p>
+              <p id="induction-energyFilledPercentage"></p>
+              <p>%</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Last Input: </p>
-              <p>3,000</p>
+              <p id="induction-lastInput"></p>
               <p>Fe/t</p>
             </div>
             <div class="statisticLine">
               <p id="statisticLineHeader">Last Output: </p>
-              <p>3,000</p>
+              <p id="induction-lastOutput"></p>
               <p>Fe/t</p>
             </div>
           </div>

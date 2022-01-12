@@ -125,23 +125,35 @@ socket.on('connect', () => {
 // Recieve messages through the ioSocket and update the DOM with jquery
 socket.on('message', (message) => {
   //console.log(message);
-  //console.log('Something came along on the "Message" channel:', message);
-
   if (message["TAG"] == "REACTOR"){
     for(var key in message["DATA"]){
+      if(message['DATA']['status'] == true){
+        $("#reactor-status").css('color', 'green');
+      } else if(message['DATA']['status'] == false){
+        $("#reactor-status").css('color', 'red');
+      }
+
       if (message['DATA']['temperature'] >= 0 && reactorTempGraph){
         bufferValues['reactorTemp'] = message['DATA']['temperature'];
-        $("#reactor-temperature").text(message["DATA"][key]);
+        $("#reactor-temperature").text(improveValue(message["DATA"][key], key));
       } else if(message['DATA']['coolantFilledPercentage'] >= 0 && reactorCoolantGraph){
         bufferValues['reactorCoolantPercentage'] = message['DATA']['coolantFilledPercentage'];
+        $("#reactor-coolantFilledPercentage").text(improveValue(message["DATA"][key], key));
       } else if(message['DATA']['heatedFilledPercentage'] >= 0 && reactorHeatedGraph){
         bufferValues['reactorHeatedPercentage'] = message['DATA']['heatedFilledPercentage'];
+        $("#reactor-heatedFilledPercentage").text(improveValue(message["DATA"][key], key));
       } else{
-        $("#reactor-" + key).text(message["DATA"][key]);
+        $("#reactor-" + key).text(improveValue(message["DATA"][key], key));
       }
     }
   } else if(message["TAG"] == "BOILER"){
     for(var key in message["DATA"]){
+      if(message['DATA']['status'] == true){
+        $("#boiler-status").css('color', 'green');
+      } else if(message['DATA']['status'] == false){
+        $("#boiler-status").css('color', 'red');
+      }
+
       if (message['DATA']['steamFilledPercentage'] >= 0 && boilerSteamGraph){
         bufferValues['boilerSteamPercentage'] = message['DATA']['steamFilledPercentage'];
       } else if(message['DATA']['waterFilledPercentage'] >= 0 && boilerWaterGraph){
@@ -149,13 +161,20 @@ socket.on('message', (message) => {
       } else if(message['DATA']['heatedCoolantFilledPercentage'] >= 0 && boilerHeatedGraph){
         bufferValues['boilerHeatedPercentage'] = message['DATA']['heatedCoolantFilledPercentage'];
       } else{
-        $("#boiler-" + key).text(message["DATA"][key]);
+        $("#boiler-" + key).text(improveValue(message["DATA"][key], key));
       }
     }
   } else if(message["TAG"] == "TURBINE"){
     for(var key in message["DATA"]){
+      if(message['DATA']['status'] == true){
+        $("#turbine-status").css('color', 'green');
+      } else if(message['DATA']['status'] == false){
+        $("#turbine-status").css('color', 'red');
+      }
+
       if (message['DATA']['productionRate'] >= 0 && bufferValues['turbineMaxProduction'] > 0 && turbineProductionGraph){
         bufferValues['turbineProductionPercentage'] = message['DATA']['productionRate'] / bufferValues['turbineMaxProduction'];
+        $("#turbine-productionRate").text(improveValue(message["DATA"][key], key));
       } else if(message['DATA']['flowRate'] >= 0 && bufferValues['turbineMaxFlowrate'] > 0 && turbineFlowrateGraph){
         bufferValues['turbineFlowrate'] = message['DATA']['flowRate'];
         bufferValues['turbineFlowratePercentage'] = message['DATA']['flowRate'] / bufferValues['turbineMaxFlowrate'];
@@ -163,31 +182,50 @@ socket.on('message', (message) => {
         bufferValues['turbineSteamPercentage'] = message['DATA']['steamFilledPercentage'];
       } else if(message['DATA']['maxProduction'] > 0){
         bufferValues['turbineMaxProduction'] = message['DATA']['maxProduction'];
+        $("#turbine-maxProduction").text(improveValue(message["DATA"][key], key));
       } else if(message['DATA']['maxFlowRate'] > 0){
         bufferValues['turbineMaxFlowrate'] = message['DATA']['maxFlowRate'];
         if(bufferValues['turbineFlowrate'] >= 0){
           bufferValues['turbineFlowratePercentage'] = bufferValues['turbineFlowrate'] / bufferValues['turbineMaxFlowrate'];
         }
       }else{
-        $("#turbine-" + key).text(message["DATA"][key]);
+        $("#turbine-" + key).text(improveValue(message["DATA"][key], key));
       }
     }
   } else if(message["TAG"] == "INDUCTION"){
     for(var key in message["DATA"]){
       if (message['DATA']['energyFilledPercentage'] >= 0 && inductionEnergyGraph){
         bufferValues['inductionEnergyPercentage'] = message['DATA']['energyFilledPercentage'];
+        $("#induction-energyFilledPercentage").text(improveValue(message["DATA"][key], key));
       } else if(message['DATA']['lastInput'] >= 0 && bufferValues['inductionTransferCap'] > 0 && inductionInputGraph){
         bufferValues['inductionInputPercentage'] = message['DATA']['lastInput'] / bufferValues['inductionTransferCap'];
+        $("#induction-lastInput").text(improveValue(message["DATA"][key], key));
       } else if(message['DATA']['lastOutput'] >= 0 && bufferValues['inductionTransferCap'] > 0 && inductionOutputGraph){
         bufferValues['inductionOutputPercentage'] = message['DATA']['lastOutput'] / bufferValues['inductionTransferCap'];
+        $("#induction-lastOutput").text(improveValue(message["DATA"][key], key));
       } else if(message['DATA']['transferCap'] > 0){
         bufferValues['inductionTransferCap'] = message['DATA']['transferCap'];
+        $("#induction-transferCap").text(improveValue(message["DATA"][key], key));
       } else{
-        $("#induction-" + key).text(message["DATA"][key]);
+        $("#induction-" + key).text(improveValue(message["DATA"][key], key));
       }
     }
   }
 });
+
+function improveValue(value, key){
+  if(key == 'temperature' || key == 'environmentalLoss'){
+    return Math.round((value + Number.EPSILON) * 100) / 100;
+  } else if(key.includes('Percentage')){
+    return Math.round((value + Number.EPSILON) * 100) / 100 * 100; // multiplied by 100 for percentage reasons
+  } else if(key == 'status'){
+    return (value == false) ? "INACTIVE" : "ACTIVE";
+  } else if(key == 'heatedName' && value == 'mekanism:empty_gas'){
+    return 'EMPTY';
+  } else{
+    return Math.round(value + Number.EPSILON).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+}
 
 function scram(){
   socket.send({
