@@ -17,8 +17,8 @@ socket.on('connect', function(){
 });
 
 function connect(){
-  socket.send({
-    'TYPE' : "RCO",
+  socket.send(JSON.stringify({
+    'TYPE' : 'RCO',
     'UUID' : uuid.value
-  });
+  }));
 }

@@ -271,14 +271,22 @@ end
 local function listenForMessage()
   while true do
     local event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
-    if channel == modemChannel then
 
-      -- Detect if SCRAM message is sent
-      if message == 'SCRAM' then
+    -- Try and unserialize if it's a JSON
+    local status, err = pcall(function()
+      message = textutils.unserializeJSON(message)
+    end)
+
+    if channel == modemChannel then
+      if message['TYPE'] == 'SCRAM' then
         local status, err = pcall(function()
           reactor[1]['object'].scram()
         end)
-      elseif message == 'RAD' then
+      elseif message['TYPE'] == 'BURNRATE' then
+        local status, err = pcall(function()
+          reactor[1]['object'].setBurnRate(message['DATA'])
+        end)
+      elseif message['TYPE'] == 'RAD' then
         for _, reactorV in pairs(reactor) do
           for key, data in pairs(reactorV['lastData']) do
             local status, err = pcall(function()

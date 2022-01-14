@@ -102,7 +102,7 @@
             </div>
           </div>
 
-          <div class="statisticContainer">
+          <div class="burnrateContainer">
             <div class="statisticLine">
               <p id="statisticLineHeader">Status: </p>
               <p id="reactor-status"></p>
@@ -112,12 +112,17 @@
               <p id="reactor-temperature"></p>
               <p>K</p>
             </div>
-            <button id="reactorToggleButton" onClick="scram()">SCRAM</button>
+            <div class="statisticLine">
+              <button id="activateReactorButton" onCLick="activateReactor()">Activate</button>
+            </div>
+            <div class="statisticLine">
+              <button id="reactorToggleButton" onClick="scram()">SCRAM</button>
+            </div>
           </div>
 
           <div class="burnrateContainer">
-            <input type="number" placeholder="Enter Burnrate..."/>
-            <button>Set Burnrate</button>
+            <input id="burnrateInput" type="number" placeholder="Enter Burnrate..."/>
+            <button id="burnrateButton" onCLick="setBurnrate()">Set Burnrate</button>
             <div class="statisticLine">
               <p id="statisticLineHeader">Set Burnrate: </p>
               <p id="reactor-burnRate"></p>

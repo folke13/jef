@@ -1,25 +1,20 @@
 {
   "name": "jef",
   "version": "1.0.0",
-  "description": "Real-time application is real-time.",
+  "description": "A Mekanism Project to view and manage real-time data in web-browser.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "TheDwarfer",
   "license": "MIT",
   "dependencies": {
-    "@keyframes/core": "^2.0.10",
-    "express": "^4.12.3",
-    "jquerykeyframes": "^1.0.8",
-    "jquery": "^2.2.4",
-    "socket.io": "^1.3.5",
-    "uuid": "^8.3.2",
-    "websocket": "^1.0.34",
-    "ws": "^8.3.0"
+    "express": "^4.17.2",
+    "ws": "^8.4.2",
+    "socket.io": "^4.4.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.3.7"
   }
 }

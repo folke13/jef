@@ -32,6 +32,8 @@ var bufferValues = {
   'inductionTransferCap': null
 };
 
+var burnrateInput = document.getElementById('burnrateInput');
+
 $(window).on('load', function() {
   reactorTempGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorTempLines'), 'reactorTempLine');
   reactorCoolantGraph = new Graph(480, 300, 40, 11, document.getElementById('reactorCoolantLines'), 'reactorCoolantLine');
@@ -46,10 +48,10 @@ $(window).on('load', function() {
   inductionInputGraph = new Graph(480, 300, 40, 11, document.getElementById('inductionInputLines'), 'inductionInputLine');
   inductionOutputGraph = new Graph(480, 300, 40, 11, document.getElementById('inductionOutputLines'), 'inductionOutputLine');
 
-  socket.send({
-    'TYPE' : 'MSG',
-    'DATA' : 'RAD'
-  });
+  socket.send(JSON.stringify({
+    'TYPE' : 'RAD',
+    'DATA' : null
+  }));
 
   function updateGraphs(){
     if(bufferValues['reactorTemp'] != null){
@@ -188,7 +190,7 @@ socket.on('message', (message) => {
         if(bufferValues['turbineFlowrate'] >= 0){
           bufferValues['turbineFlowratePercentage'] = bufferValues['turbineFlowrate'] / bufferValues['turbineMaxFlowrate'];
         }
-      }else{
+      } else{
         $("#turbine-" + key).text(improveValue(message["DATA"][key], key));
       }
     }
@@ -214,7 +216,7 @@ socket.on('message', (message) => {
 });
 
 function improveValue(value, key){
-  if(key == 'temperature' || key == 'environmentalLoss'){
+  if(key == 'temperature' || key == 'environmentalLoss' || key == 'burnRate' || key == 'actualBurnRate'){
     return Math.round((value + Number.EPSILON) * 100) / 100;
   } else if(key.includes('Percentage')){
     return Math.round((value + Number.EPSILON) * 100) / 100 * 100; // multiplied by 100 for percentage reasons
@@ -222,23 +224,25 @@ function improveValue(value, key){
     return (value == false) ? "INACTIVE" : "ACTIVE";
   } else if(key == 'heatedName' && value == 'mekanism:empty_gas'){
     return 'EMPTY';
-  } else{
+  } else if(key == 'dumpingMode'){
+    return value;
+  }else{
     return Math.round(value + Number.EPSILON).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
 
 function scram(){
-  socket.send({
-    'TYPE' : 'MSG',
-    'DATA' : 'SCRAM'
-  });
+  socket.send(JSON.stringify({
+    'TYPE' : 'SCRAM',
+    'DATA' : null
+  }));
 }
 
-function sendMessage(){
-  socket.send({
-    'TYPE' : 'MSG',
-    'DATA' : input.value
-  });
+function setBurnrate(){
+  socket.send(JSON.stringify({
+    'TYPE' : 'BURNRATE',
+    'DATA' : Number(burnrateInput.value)
+  }));
 }
 
 // Graph Updates & Management

@@ -69,8 +69,6 @@ webapp.get('/', function (req, res){
 
 // Handle connections coming back from the browser clients (probably to send data to CC client)
 httpsio.on('connection', (socket) => {
-  console.log("Connection with webclient Established!");
-
   // Check if connection is reconnect from the redirection (comparing socket IP-adress)
   for (const connection of connections){
     if (connection['WEBSOCKET'] == socket.conn.remoteAddress){
@@ -81,8 +79,14 @@ httpsio.on('connection', (socket) => {
   }
 
   // Check message coming from broswer client to server (Either setup request or CC data to be sent)
-  socket.on('message', (message) => {
-    console.log("Webclient sent Message: " + message);
+  socket.on('message', (JSONMessage) => {
+    try{
+      var message = JSON.parse(JSONMessage);
+    } catch(e){
+      console.log("Got a message that's not a JSON. Do nothing with it.");
+      return false;
+    }
+    console.log("Webclient sent Message: " + JSONMessage);
 
     // A connection request (setup), RCO = Request Connection
     if (message['TYPE'] == "RCO"){
@@ -108,12 +112,10 @@ httpsio.on('connection', (socket) => {
         console.log("No Connection with UUID " + message['UUID'] + " was found!");
         socket.emit('warning', 'UUID Not Found');
       }
-    } else if (message['TYPE'] == "MSG") {
+    } else {
       for (const connection of connections){
-        if (connection['WEBSOCKET'] == socket && message['DATA'] != null){
-          // get the client address (needed to reconnect after)
-          console.log("Furthering Message to Websocket");
-          connection['CCSOCKET'].send(message['DATA']);
+        if (connection['WEBSOCKET'] == socket && message['TYPE'] != null){
+          connection['CCSOCKET'].send(JSONMessage);
         }
       }
     }

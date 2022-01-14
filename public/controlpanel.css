@@ -229,7 +229,8 @@ svg {
   font-style: normal;
 }
 
-.burnrateContainer button {
+#burnrateButton {
+  cursor: pointer;
   width: 180px;
   height: 40px;
   margin-left: 30px;
@@ -244,8 +245,28 @@ svg {
   background-color: grey;
 }
 
-#reactorToggleButton:active{
-  background-color: #c20000;
+#burnrateButton:active {
+  background-color: #636363;
+}
+
+#activateReactorButton {
+  cursor: pointer;
+  width: 180px;
+  height: 40px;
+  margin-bottom: 18px;
+  border-radius: 0px;
+  border: 1px white solid;
+
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-style: normal;
+  background-color: #158a00;
+}
+
+#activateReactorButton:active {
+  background-color: #106900;
 }
 
 #reactorToggleButton {
@@ -262,6 +283,10 @@ svg {
   font-family: sans-serif;
   font-style: normal;
   background-color: red;
+}
+
+#reactorToggleButton:active{
+  background-color: #c20000;
 }
 
 .burnrateContainer p {

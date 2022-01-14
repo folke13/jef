@@ -35,17 +35,18 @@ end
 local function listenForServerMessage()
   while true do
     local status, err = pcall(function()
-      local data = ws.receive(10)
+      local JSONMessage = ws.receive(10)
+      local message = textutils.unserializeJSON(JSONMessage)
 
-      if data == 'SCRAM' then
+      if message['TYPE'] == 'SCRAM' then
         --Got a SCRAM message, quickly send it to the puppet for reactor shutdown
         print("SCRAM instruction Received!")
-      elseif data == 'RAD' then
+      elseif message['TYPE'] == 'RAD' then
         -- Requesting All Data
         print("RAD instruction Received!")
       end
 
-      wirelessModems[1].transmit(modemChannel, modemChannel, data)
+      wirelessModems[1].transmit(modemChannel, modemChannel, JSONMessage)
     end)
   end
 end

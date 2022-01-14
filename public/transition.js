@@ -11,7 +11,6 @@ var inductionPage = document.getElementsByClassName("inductionPage")[0];
 
 var reactorMouseDown = reactorNavButton.onmousedown;
 reactorNavButton.onmousedown = function() {
-  console.log("User Pressed Reactor Navigation Button");
   if (reactorMouseDown) reactorMouseDown();
 
   reactorNavButton.style.backgroundColor = "gray";
@@ -27,7 +26,6 @@ reactorNavButton.onmousedown = function() {
 
 var boilerMouseDown = boilerNavButton.onmousedown;
 boilerNavButton.onmousedown = function() {
-  console.log("User Pressed Boiler Navigation Button");
   if (boilerMouseDown) boilerMouseDown();
 
   reactorNavButton.style.backgroundColor = "#333";
@@ -43,7 +41,6 @@ boilerNavButton.onmousedown = function() {
 
 var turbineMouseDown = turbineNavButton.onmousedown;
 turbineNavButton.onmousedown = function() {
-  console.log("User Pressed Turbine Navigation Button");
   if (turbineMouseDown) turbineMouseDown();
 
   reactorNavButton.style.backgroundColor = "#333";
@@ -59,7 +56,6 @@ turbineNavButton.onmousedown = function() {
 
 var inductionMouseDown = inductionNavButton.onmousedown;
 inductionNavButton.onmousedown = function() {
-  console.log("User Pressed Induction Navigation Button");
   if (inductionMouseDown) inductionMouseDown();
 
   reactorNavButton.style.backgroundColor = "#333";
