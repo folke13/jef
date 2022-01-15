@@ -238,6 +238,13 @@ function scram(){
   }));
 }
 
+function activateReactor(){
+  socket.send(JSON.stringify({
+    'TYPE' : 'ACTIVATE',
+    'DATA' : null
+  }));
+}
+
 function setBurnrate(){
   socket.send(JSON.stringify({
     'TYPE' : 'BURNRATE',

@@ -150,13 +150,7 @@ local function getListenerValues()
           checkValue(v, 'REACTOR', 'fuelAssemblies', v['lastData']['fuelAssemblies'], v['object'].getFuelAssemblies())
           checkValue(v, 'REACTOR', 'fuelSurfaceArea', v['lastData']['fuelSurfaceArea'], v['object'].getFuelSurfaceArea())
           checkValue(v, 'REACTOR', 'boilEfficiency', v['lastData']['boilEfficiency'], v['object'].getBoilEfficiency())
-
-          -- Status
-          local machineStatus = false
-          if v['lastData']['actualBurnRate'] ~= nil and v['lastData']['actualBurnRate'] > 0 then
-            machineStatus = true
-          end
-          checkValue(v, 'REACTOR', 'status', v['lastData']['status'], machineStatus)
+          checkValue(v, 'REACTOR', 'status', v['lastData']['status'], v['object'].getStatus())
         end)
 
         if not status then
@@ -194,7 +188,7 @@ local function getListenerValues()
 
           -- Status
           local machineStatus = false
-          if v['lastData']['productionRate'] ~= nil and v['lastData']['productionRate'] > 1 then
+          if v['lastData']['lastBoilRate'] ~= nil and v['lastData']['lastBoilRate'] > 1 then
             machineStatus = true
           end
           checkValue(v, 'BOILER', 'status', v['lastData']['status'], machineStatus)
@@ -286,6 +280,10 @@ local function listenForMessage()
         local status, err = pcall(function()
           reactor[1]['object'].setBurnRate(message['DATA'])
         end)
+      elseif message['TYPE'] == 'ACTIVATE' then
+        local status, err = pcall(function()
+          reactor[1]['object'].activate()
+        end)
       elseif message['TYPE'] == 'RAD' then
         for _, reactorV in pairs(reactor) do
           for key, data in pairs(reactorV['lastData']) do
@@ -348,12 +346,35 @@ local function tick()
   end
 end
 
+local function scramCheck()
+  while true do
+    -- Only SCRAM if active
+    if reactor[1]['object'].getStatus() then
+      -- If damage is over or equal 20% or the temperature is 1200K
+      if reactor[1]['object'].getDamagePercent() >= 0.2 or reactor[1]['object'].getTemperature() >= 1200then
+        local status, err = pcall(function()
+          reactor[1]['object'].scram()
+        end)
+
+        wirelessModems[1].transmit(modemChannel, modemChannel, {
+          ['TYPE'] = 'ECS',
+          ['DATA'] = 'SCRAM'
+        })
+      end
+    end
+  end
+end
 
 
 function main()
   wirelessModems[1].open(modemChannel)
+  getListenerValues()
 
-  parallel.waitForAny(tick, listenForMessage)
+  if reactor[1] then
+    parallel.waitForAny(tick, listenForMessage, scramCheck)
+  else
+    parallel.waitForAny(tick, listenForMessage)
+  end
 end
 
 main()
